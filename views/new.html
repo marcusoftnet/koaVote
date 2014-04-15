@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}New vote{% endblock %}
+
+{% block content %}
+  <h1>How do you feel about your visit?</h1>
+  <form name="voteForm" action="/vote" method="post">
+    <p>
+      <input type="hidden" id="hospital" name="hospital" value="Bungsu">
+    </p>
+    <p>
+    	<ul>
+  			<li><button onclick="submitVote(1)" type="button">:(</button></li>
+  			<li><button onclick="submitVote(2)" type="button">:|</button></li>
+  			<li><button onclick="submitVote(3)" type="button">:)</button></li>
+  			<li><button onclick="submitVote(4)" type="button">:D</button></li>
+    	</ul>
+      <input type="hidden" id="voteValue" name="voteValue" value="Bungsu">
+    </p>
+  </form>
+  <script type="text/javascript">
+    function submitVote(vote){
+      document.getElementById("voteValue").value = vote;
+      voteForm.submit();
+    };
+  </script>
+{% endblock %}

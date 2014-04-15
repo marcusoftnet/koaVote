@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}All votes{% endblock %}
+
+{% block content %}
+<table border="1">
+  <thead>
+    <tr>
+      <th>Hospital</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Vote</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for vote in votes %}
+    <tr>
+      <td>{{ vote.hospital }}</td>
+      <td>{{ vote.created_at.toDateString() }}</td>
+      <td>{{ vote.created_at.toTimeString() }}</td>
+      <td>{{ vote.voteValue }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -4,7 +4,8 @@
   "description": "A very simple voting site",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha -u bdd -r Spec"
+    "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec",
+    "start" : "nodemon --harmony app.js"
   },
   "author": "@marcusoftnet",
   "license": "MIT",
