@@ -1,0 +1,31 @@
+{
+  "name": "koaVote",
+  "version": "0.0.1",
+  "description": "A very simple voting site",
+  "main": "app.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha -u bdd -r Spec"
+  },
+  "author": "@marcusoftnet",
+  "license": "MIT",
+  "dependencies": {
+    "co-body": "0.0.1",
+    "co-views": "^0.1.0",
+    "koa": "^0.5.5",
+    "koa-logger": "^1.1.0",
+    "koa-route": "^1.0.2",
+    "koa-static": "^1.4.0",
+    "swig": "^1.2.2",
+    "monk": "^0.8.1",
+    "co-monk":"^1.0.0"
+  },
+  "devDependencies": {
+    "co": "^3.0.0",
+    "mocha": "*",
+    "should": "*",
+    "supertest": "*"
+  },
+  "engines": {
+    "node": ">= 11.9"
+  }
+}
