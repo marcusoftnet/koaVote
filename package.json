@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec",
-    "start" : "nodemon --harmony app.js"
+    "start": "nodemon --harmony app.js"
   },
   "author": "@marcusoftnet",
   "license": "MIT",
@@ -15,10 +15,10 @@
     "koa": "^0.5.5",
     "koa-logger": "^1.1.0",
     "koa-route": "^1.0.2",
-    "koa-static": "^1.4.0",
+    "koa-static": "~1.4.3",
     "swig": "^1.2.2",
     "monk": "^0.8.1",
-    "co-monk":"^1.0.0"
+    "co-monk": "^1.0.0"
   },
   "devDependencies": {
     "co": "^3.0.0",

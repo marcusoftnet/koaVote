@@ -4,11 +4,13 @@
 
 var logger = require('koa-logger');
 var route = require('koa-route');
+var serve = require('koa-static');
 var koa = require('koa');
 var app = module.exports = koa();
 
 // middleware
 app.use(logger());
+app.use(serve(__dirname + '/public'));
 
 // route middleware
 var routes = require('./voteRoutes.js');
