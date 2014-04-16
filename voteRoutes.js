@@ -36,24 +36,14 @@ module.exports.create = function *create() {
 module.exports.exportTo = function *list(format) {
   var voteList = yield votes.find({});
 
-  // Supported types
-  // CSV
-  // JSON
-  // so just return
-  if (format === 'json'){
-  	this.type = 'application/json';
-  	this.body =  voteList;
-  	return;
-  }
-
-  // accepts html
-  if (format === 'html') {
-    this.type = 'html';
+  if (format === 'xls') {
+    this.set('Content-Disposition', 'attachment;filename=data.xls');
+    this.type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     this.body = yield render('list', { votes: voteList });
     return;
   }
 
-  // default to text
-  this.type = 'text';
+  // default to json
+  this.type = 'json';
   this.body = voteList;
 };
