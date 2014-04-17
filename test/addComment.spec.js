@@ -27,4 +27,21 @@ describe('Adding comments', function(){
 				.end(done);
 		})();
 	});
+
+	it('adds a comment to a existing vote', function (done) {
+		co(function *(){
+			var vote = yield testHelpers.votes.insert({
+				hospital: 'RS Bungsu',
+				voteValue : 3,
+				questionId : 12345678990
+			});
+
+			request
+				.post('/vote/' + vote._id + '/comment')
+				.send({comment: 'A nice little comment'})
+	      		.expect(302)
+	      		.expect('location', '/')
+				.end(done);
+		})();
+	});
 });

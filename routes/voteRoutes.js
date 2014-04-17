@@ -64,10 +64,13 @@ module.exports.showAddComment = function *(id) {
  * Adds a comment to vote
  */
 module.exports.addComment = function *(id){
-  var comment = yield parse(this);
-  console.log(comment);
-  console.log(id);
-  this.status = 200;
+  var posted = yield parse(this);
+
+  var vote = yield votes.findById(id); // TODO: This should be able to do in one go.
+  vote.comment = posted.comment;
+  yield votes.updateById(id, vote);
+
+  this.redirect('/');
 };
 
 /**

@@ -14,7 +14,6 @@ describe('Adding votes', function(){
 		testHelpers.removeAllDocs(done);
 	});
 
-
 	it('has a page to add votes', function(done){
 		request
 			.get('/')
