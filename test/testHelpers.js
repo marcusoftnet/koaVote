@@ -12,7 +12,5 @@ module.exports.removeAllDocs = function(done){
 	})(done);
 };
 
-module.exports.POST_VOTE_DATA = { hospital: 'RS Bungsu', voteValue : 3, questionId : 12345678990 }
-
 var app = require('../app.js');
-module.exports.app = app;
+module.exports.request = require('supertest').agent(app.listen());

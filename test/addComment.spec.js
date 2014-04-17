@@ -1,8 +1,7 @@
 var testHelpers = require('./testHelpers.js');
 var co = require('co');
 var should = require('should');
-var request = require('supertest').agent(testHelpers.app.listen());
-
+var request = testHelpers.request;
 
 describe('Adding comments', function(){
 

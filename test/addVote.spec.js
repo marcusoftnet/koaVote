@@ -1,37 +1,21 @@
-var app = require('../app.js');
+var testHelpers = require('./testHelpers.js');
 var co = require('co');
 var should = require('should');
-var request = require('supertest').agent(app.listen());
-
-var config = require('../config')('local');
-
-var monk = require('monk');
-var wrap = require('co-monk');
-var db = monk(config.mongoUrl);
-var votes = wrap(db.get('votes'));
-
+var request = testHelpers.request;
 
 describe('Adding votes', function(){
-	var a_test_vote;
-
-	var removeAll = function(done){
-		co(function *(){
-			yield votes.remove({});
-		})(done);
-	};
-
+	var a_test_vote = {};
 	beforeEach(function (done) {
-		removeAll(done);
-
 		a_test_vote  = { hospital: 'RS Bungsu', voteValue : 3 }
+		testHelpers.removeAllDocs(done);
 	});
 
 	afterEach(function (done) {
-		removeAll(done);
+		testHelpers.removeAllDocs(done);
 	});
 
 
-	it('renders a page to add votes', function(done){
+	it('has a page to add votes', function(done){
 		request
 			.get('/')
 			.expect('Content-Type', /html/)
