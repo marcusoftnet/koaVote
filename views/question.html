@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}Question details{% endblock %}
+
+{% block content %}
+  <h1>Create a new question here</h1>
+  <form name='questionForm' action='/question/new' method='post'>
+    <p>
+      <label>QuestionId:</label>
+      <pre>{{ question._id }}</pre>
+      <p>The voting page for this question is here: <a href="http://localhost/{{ question._id }}">http://localhost/{{ question._id }}</a>
+    </p>
+    <p>
+      <label for='questionTitle'>Question:</label>
+      <input type='text' id="questionTitle" name="questionTitle" value="{{question.questionTitle}}">
+    </p>
+    <p>
+      <label for='hosptial'>Hospital:</label>
+      <input type='text' id="hospital" name="hospital" value="{{question.hospital}}">
+    </p>
+    <p>
+      <label for='tagString'>Tags:</label>
+      <input type='text' id="tagString" name="tagString" value="{{question.tags.join(',')}}">
+    </p>
+    <input type='submit' value='Add comment'>
+  </form>
+{% endblock %}

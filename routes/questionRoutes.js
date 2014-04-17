@@ -12,22 +12,39 @@ var db = monk(config.mongoUrl);
 var questions = wrap(db.get('questions'));
 
 /**
- * Show voting page
+ * Show question adding page
  */
 module.exports.showAddQuestion = function *add() {
 	this.body = yield render('newQuestion');
+};
+
+
+/*
+ ** shows the question data
+*/
+module.exports.showQuestion = function *(id) {
+	var question = yield questions.findById(id);
+	this.body = yield render('question', { question : question });
 };
 
 /**
  * Add new question
  */
 module.exports.addQuestion = function *() {
-	var question = yield parse(this);
-	question.tags = trimTags(question.tagString.split(','));
-	question.created_at = new Date;
+	var question = createQuestionFromPostedData(yield parse(this));
 
 	var q = yield questions.insert(question);
-	this.redirect('/question/new/' + q._id);
+
+	this.redirect('/question/' + q._id);
+};
+
+function createQuestionFromPostedData(postedData){
+	return {
+		hospital : postedData.hospital,
+		questionTitle : postedData.questionTitle,
+		tags : trimTags(postedData.tagString.split(',')),
+		created_at : new Date
+	};
 };
 
 function trimTags(tags){
