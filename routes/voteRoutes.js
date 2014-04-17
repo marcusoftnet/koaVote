@@ -2,12 +2,13 @@
  * Module dependencies.
  */
 var parse = require('co-body');
-var render = require('./lib/render');
+var render = require('../lib/render');
+var config = require('../config')();
 
 // Set up monk
 var monk = require('monk');
 var wrap = require('co-monk');
-var db = monk('localhost/koaVote'); // TODO: Config
+var db = monk(config.mongoUrl);
 var votes = wrap(db.get('votes'));
 
 // Route definitions
