@@ -13,13 +13,17 @@ var config = require('./config')();
 app.use(logger());
 app.use(serve(__dirname + '/public'));
 
-// route middleware
-var routes = require('./routes/voteRoutes.js');
-app.use(route.get('/', routes.showAddVote));
-app.use(route.post('/vote', routes.addVote));
-app.use(route.get('/vote/:id/comment', routes.showAddComment));
-app.use(route.post('/vote/:id/comment', routes.addComment));
-app.use(route.get('/vote/export/:format', routes.exportTo));
+// routes
+var voteRoutes = require('./routes/voteRoutes.js');
+app.use(route.get('/', voteRoutes.showAddVote));
+app.use(route.post('/vote', voteRoutes.addVote));
+app.use(route.get('/vote/:id/comment', voteRoutes.showAddComment));
+app.use(route.post('/vote/:id/comment', voteRoutes.addComment));
+app.use(route.get('/vote/export/:format', voteRoutes.exportTo));
+
+var questionRoutes = require('./routes/questionRoutes.js');
+app.use(route.get('/question/new', questionRoutes.showAddQuestion));
+app.use(route.post('/question/new', questionRoutes.addQuestion));
 
 // listen
 app.listen(config.port);

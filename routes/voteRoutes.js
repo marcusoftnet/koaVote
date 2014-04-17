@@ -11,12 +11,11 @@ var wrap = require('co-monk');
 var db = monk(config.mongoUrl);
 var votes = wrap(db.get('votes'));
 
-// Route definitions
 /**
- * Show creation form.
+ * Show voting page
  */
 module.exports.showAddVote = function *add() {
-  this.body = yield render('new');
+  this.body = yield render('newVote');
 };
 
 function existsAndNonEmpty(value){

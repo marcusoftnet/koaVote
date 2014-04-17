@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}New question{% endblock %}
+
+{% block content %}
+  <h1>Create a new question here</h1>
+  <form name='questionForm' action='/question/new' method='post'>
+    <p>
+      <label for='questionTitle'>Question:</label>
+      <input type='text' id="questionTitle" name="questionTitle" placeholder="Question text">
+    </p>
+    <p>
+      <label for='hosptial'>Hospital:</label>
+      <input type='text' id="hospital" name="hospital" placeholder="Hospital name">
+    </p>
+    <p>
+      <label for='tagString'>Tags:</label>
+      <input type='text' id="tagString" name="tagString" placeholder="patient poll, exit doors, 2014">
+    </p>
+    <input type='submit' value='Add comment'>
+  </form>
+{% endblock %}
