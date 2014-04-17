@@ -15,24 +15,64 @@ var votes = wrap(db.get('votes'));
 /**
  * Show creation form.
  */
-module.exports.add = function *add() {
+module.exports.showAddVote = function *add() {
   this.body = yield render('new');
 };
 
+function existsAndNonEmpty(value){
+  if(value === undefined)
+    return false;
+  if(value === null)
+    return false;
+  if(value === '')
+    return false;
+  return true;
+};
 
 /**
  * Store a vote.
  */
-module.exports.create = function *create() {
+module.exports.addVote = function *create() {
   var vote = yield parse(this);
-  vote.created_at = new Date;
 
-  yield votes.insert(vote);
-  this.redirect('/');
+  // Validate
+  if(!existsAndNonEmpty(vote.hospital)){
+    this.set('ErrorMessage', 'Hospital required');
+    this.redirect('/');
+    return;
+  }
+  if(!existsAndNonEmpty(vote.voteValue)){
+    this.set('ErrorMessage', 'Vote value required');
+    this.redirect('/');
+    return;
+  }
+
+  // Store it!
+  vote.created_at = new Date;
+  var v = yield votes.insert(vote);
+  this.redirect('/vote/' + v._id + '/comment');
 };
 
 /**
- * Post listing.
+ * Show thank you form, and add a comment
+ */
+module.exports.showAddComment = function *(id) {
+  this.body = yield render('comment', { voteId : id });
+};
+
+/**
+ * Adds a comment to vote
+ */
+module.exports.addComment = function *(id){
+  var comment = yield parse(this);
+  console.log(comment);
+  console.log(id);
+  this.status = 200;
+};
+
+/**
+ * Export data
+ * TODO: Move to own file?
  */
 module.exports.exportTo = function *list(format) {
   var voteList = yield votes.find({});

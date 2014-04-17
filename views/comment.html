@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}Thank you!{% endblock %}
+
+{% block content %}
+  <h1>Thank you for you vote!</h1>
+  <p>Do you want to add a comment?
+  <form name="commentForm" action="/vote/{{ voteId }}/comment" method="post">
+    <textarea id="comment" name="comment" placeholder="Comment here"></textarea>
+    <br />
+    <input type="submit" value="Add comment">
+  </form>
+{% endblock %}
