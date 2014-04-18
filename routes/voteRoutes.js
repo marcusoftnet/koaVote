@@ -10,13 +10,20 @@ var config = require('../config')();
 var monk = require('monk');
 var wrap = require('co-monk');
 var db = monk(config.mongoUrl);
-var votes = wrap(db.get('votes'));
+var votes = wrap(db.get('votes')); // TODO: Move to utils
+var questions = wrap(db.get('questions'));
 
 /**
  * Show voting page
  */
-module.exports.showAddVote = function *add() {
-  this.body = yield render('newVote');
+module.exports.showAddVote = function *() {
+  var questionId = this.query.questionid;
+  var question = yield questions.findOne(questionId);
+
+  question.tagString = question.tags.join(',');
+  question.id = question._id.toString();
+
+  this.body = yield render('newVote', { question : question });
 };
 
 /**

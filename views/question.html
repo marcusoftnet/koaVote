@@ -3,12 +3,12 @@
 {% block title %}Question details{% endblock %}
 
 {% block content %}
-  <h1>Create a new question here</h1>
+  <h1>Question: '{{question.questionTitle}}' </h1>
   <form name='questionForm' action='/question/{{ question.id }}/update' method='post'>
     <p>
-      <label>QuestionId:</label>
+      <label>Id:</label>
       <pre>{{ question.id }}</pre>
-      <p>The voting page for this question is here: <a href="http://localhost/{{ question.id }}">http://localhost/{{ question.id }}</a>
+      <p><a href="/vote?questionId={{ question.id }}">Start voting here</a>
     </p>
     <p>
       <label for='questionTitle'>Question:</label>

@@ -3,10 +3,12 @@
 {% block title %}New vote{% endblock %}
 
 {% block content %}
-  <h1>How do you feel about your visit?</h1>
+  <h1>{{ question.questionTitle }}</h1>
   <form name="voteForm" action="/vote" method="post">
     <p>
-      <input type="hidden" id="hospital" name="hospital" value="Bungsu">
+      <input type="hidden" id="hospital" name="hospital" value="{{ question.hospital }}">
+      <input type="hidden" id="tagString" name="tagString" value="{{ question.tagString }}">
+      <input type="hidden" id="questionId" name="questionId" value="{{ question.id }}">
     </p>
     <p>
     	<button onclick="submitVote(1)" type="button">

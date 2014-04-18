@@ -15,7 +15,7 @@ app.use(serve(__dirname + '/public'));
 
 // routes
 var voteRoutes = require('./routes/voteRoutes.js');
-app.use(route.get('/', voteRoutes.showAddVote));
+app.use(route.get('/vote', voteRoutes.showAddVote));
 app.use(route.post('/vote', voteRoutes.addVote));
 app.use(route.get('/vote/:id/comment', voteRoutes.showAddComment));
 app.use(route.post('/vote/:id/comment', voteRoutes.addComment));
