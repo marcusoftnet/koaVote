@@ -33,8 +33,22 @@ module.exports.showQuestion = function *(id) {
  * Add new question
  */
 module.exports.addQuestion = function *() {
-	var question = createQuestionFromPostedData(yield parse(this));
+	var postedData = yield parse(this);
+	var newQuestionURL = '/question/new';
 
+	// Validate
+	if(!utils.existsAndNonEmpty(postedData.hospital)){
+		this.set('ErrorMessage', 'Hospital required');
+		this.redirect(newQuestionURL);
+		return;
+	}
+	if(!utils.existsAndNonEmpty(postedData.questionTitle)){
+		this.set('ErrorMessage', 'Question required');
+		this.redirect(newQuestionURL);
+		return;
+	}
+
+	var question = createQuestionFromPostedData(postedData);
 	var q = yield questions.insert(question);
 
 	this.redirect('/question/' + q._id);

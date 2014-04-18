@@ -5,6 +5,7 @@ var request = testHelpers.request;
 
 describe('Adding questions', function(){
 	var a_test_question = {};
+	var NEW_QUESTION_URL = '/question/new';
 
 	beforeEach(function (done) {
 		a_test_question  = {
@@ -21,7 +22,7 @@ describe('Adding questions', function(){
 
 	it('has a page to add new questions', function(done){
 		request
-			.get('/question/new')
+			.get(NEW_QUESTION_URL)
 	  		.expect(200)
 			.expect('Content-Type', /html/)
 			.end(done);
@@ -29,10 +30,34 @@ describe('Adding questions', function(){
 
 	it('with correct values works fine', function(done){
 		request
-			.post('/question/new')
+			.post(NEW_QUESTION_URL)
 			.send(a_test_question)
 			.expect(302)
 			.expect('location', /question/) // TODO: Nice little regexp here /vote/*.*/comment
+			.end(done);
+	});
+
+	it('requires a title', function (done) {
+		delete a_test_question.hospital;
+
+		request
+			.post(NEW_QUESTION_URL)
+			.send(a_test_question)
+			.expect(302)
+			.expect('location', NEW_QUESTION_URL)
+			.expect('ErrorMessage', 'Hospital required')
+			.end(done);
+	});
+
+	it('requires a question', function (done) {
+		delete a_test_question.questionTitle;
+
+		request
+			.post(NEW_QUESTION_URL)
+			.send(a_test_question)
+			.expect(302)
+			.expect('location', NEW_QUESTION_URL)
+			.expect('ErrorMessage', 'Question required')
 			.end(done);
 	});
 });
