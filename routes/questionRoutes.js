@@ -4,6 +4,7 @@
 var parse = require('co-body');
 var render = require('../lib/render');
 var config = require('../config')();
+var utils = require('./utils.js');
 
 // Set up monk
 var monk = require('monk');
@@ -43,11 +44,25 @@ module.exports.addQuestion = function *() {
  * Update question
  */
 module.exports.updateQuestion = function *(id) {
-	var question = createQuestionFromPostedData(yield parse(this));
+	var questionUrl = '/question/' + id;
+	var postedData = yield parse(this);
 
+	// Validate
+	if(!utils.existsAndNonEmpty(postedData.hospital)){
+		this.set('ErrorMessage', 'Hospital required');
+		this.redirect(questionUrl);
+		return;
+	}
+	if(!utils.existsAndNonEmpty(postedData.questionTitle)){
+		this.set('ErrorMessage', 'Question required');
+		this.redirect(questionUrl);
+		return;
+	}
+
+	var question = createQuestionFromPostedData(postedData);
 	var q = yield questions.updateById(id, question);
 
-	this.redirect('/question/' + id);
+	this.redirect(questionUrl);
 };
 
 function createQuestionFromPostedData(postedData){

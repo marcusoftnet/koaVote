@@ -4,8 +4,15 @@ var should = require('should');
 var request = testHelpers.request;
 
 describe('Adding comments', function(){
+	var a_test_vote = {};
 
 	beforeEach(function (done) {
+		a_test_vote = {
+				hospital: 'RS Bungsu',
+				voteValue : 3,
+				questionId : 12345678990
+			};
+
 		testHelpers.removeAllDocs(done);
 	});
 
@@ -15,11 +22,8 @@ describe('Adding comments', function(){
 
 	it('has a page to add comments', function(done){
 		co(function *(){
-			var vote = yield testHelpers.votes.insert({
-				hospital: 'RS Bungsu',
-				voteValue : 3,
-				questionId : 12345678990
-			});
+			var vote = yield testHelpers.votes.insert(a_test_vote);
+
 			request
 				.get('/vote/' + vote._id + '/comment')
 				.expect('Content-Type', /html/)
@@ -30,11 +34,7 @@ describe('Adding comments', function(){
 
 	it('adds a comment to a existing vote', function (done) {
 		co(function *(){
-			var vote = yield testHelpers.votes.insert({
-				hospital: 'RS Bungsu',
-				voteValue : 3,
-				questionId : 12345678990
-			});
+			var vote = yield testHelpers.votes.insert(a_test_vote);
 
 			request
 				.post('/vote/' + vote._id + '/comment')

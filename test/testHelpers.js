@@ -1,14 +1,20 @@
 var co = require('co');
-var config = require('../config')('local');
 var monk = require('monk');
 var wrap = require('co-monk');
+
+var config = require('../config')('local');
 var db = monk(config.mongoUrl);
+
 var votes = wrap(db.get('votes'));
 module.exports.votes = votes;
+
+var questions = wrap(db.get('questions'));
+module.exports.questions = questions;
 
 module.exports.removeAllDocs = function(done){
 	co(function *(){
 		yield votes.remove({});
+		yield questions.remove({});
 	})(done);
 };
 

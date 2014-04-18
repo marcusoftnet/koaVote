@@ -3,6 +3,7 @@
  */
 var parse = require('co-body');
 var render = require('../lib/render');
+var utils = require('./utils.js');
 var config = require('../config')();
 
 // Set up monk
@@ -18,16 +19,6 @@ module.exports.showAddVote = function *add() {
   this.body = yield render('newVote');
 };
 
-function existsAndNonEmpty(value){
-  if(value === undefined)
-    return false;
-  if(value === null)
-    return false;
-  if(value === '')
-    return false;
-  return true;
-};
-
 /**
  * Store a vote.
  */
@@ -35,12 +26,12 @@ module.exports.addVote = function *create() {
   var vote = yield parse(this);
 
   // Validate
-  if(!existsAndNonEmpty(vote.hospital)){
+  if(!utils.existsAndNonEmpty(vote.hospital)){
     this.set('ErrorMessage', 'Hospital required');
     this.redirect('/');
     return;
   }
-  if(!existsAndNonEmpty(vote.voteValue)){
+  if(!utils.existsAndNonEmpty(vote.voteValue)){
     this.set('ErrorMessage', 'Vote value required');
     this.redirect('/');
     return;
