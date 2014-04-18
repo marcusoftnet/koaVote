@@ -24,6 +24,7 @@ module.exports.showAddQuestion = function *add() {
 */
 module.exports.showQuestion = function *(id) {
 	var question = yield questions.findById(id);
+	question.id = question._id.toString();
 	this.body = yield render('question', { question : question });
 };
 

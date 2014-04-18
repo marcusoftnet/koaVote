@@ -4,11 +4,11 @@
 
 {% block content %}
   <h1>Create a new question here</h1>
-  <form name='questionForm' action='/question/new' method='post'>
+  <form name='questionForm' action='*' method='post'>
     <p>
       <label>QuestionId:</label>
-      <pre>{{ question._id }}</pre>
-      <p>The voting page for this question is here: <a href="http://localhost/{{ question._id }}">http://localhost/{{ question._id }}</a>
+      <pre>{{ question.id }}</pre>
+      <p>The voting page for this question is here: <a href="http://localhost/{{ question.question.id }}">http://localhost/{{ question.id }}</a>
     </p>
     <p>
       <label for='questionTitle'>Question:</label>
@@ -22,6 +22,6 @@
       <label for='tagString'>Tags:</label>
       <input type='text' id="tagString" name="tagString" value="{{question.tags.join(',')}}">
     </p>
-    <input type='submit' value='Add comment'>
+    <input type='submit' value='Update question'>
   </form>
 {% endblock %}
