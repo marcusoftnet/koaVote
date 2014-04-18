@@ -26,6 +26,7 @@ app.use(route.get('/question/new', questionRoutes.showAddQuestion));
 app.use(route.post('/question/new', questionRoutes.addQuestion));
 
 app.use(route.get('/question/:id', questionRoutes.showQuestion));
+app.use(route.post('/question/:id/update', questionRoutes.updateQuestion));
 
 // listen
 app.listen(config.port);

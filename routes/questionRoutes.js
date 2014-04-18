@@ -39,6 +39,17 @@ module.exports.addQuestion = function *() {
 	this.redirect('/question/' + q._id);
 };
 
+/**
+ * Update question
+ */
+module.exports.updateQuestion = function *(id) {
+	var question = createQuestionFromPostedData(yield parse(this));
+
+	var q = yield questions.updateById(id, question);
+
+	this.redirect('/question/' + id);
+};
+
 function createQuestionFromPostedData(postedData){
 	return {
 		hospital : postedData.hospital,
