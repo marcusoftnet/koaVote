@@ -30,6 +30,24 @@ describe('Adding votes', function(){
 		})();
 	});
 
+	it('returns error when no question can be found', function(done){
+		request
+			.get('/vote?questionId=12345')
+			.expect(302)
+			.expect('location', '/')
+			.expect('ErrorMessage', "No question found for id: '12345'")
+			.end(done);
+	});
+
+	it('returns error when no questionId is passed to the page', function (done) {
+		request
+			.get('/vote')
+			.expect(302)
+			.expect('location', '/')
+			.expect('ErrorMessage', 'No questionId passed to page')
+			.end(done);
+	});
+
 	it('with correct values', function(done){
 		request
 			.post('/vote')

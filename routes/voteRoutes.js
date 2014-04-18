@@ -17,9 +17,19 @@ var questions = wrap(db.get('questions'));
  * Show voting page
  */
 module.exports.showAddVote = function *() {
+  if(!utils.exists(this.query.questionId)){
+    this.set('ErrorMessage', "No questionId passed to page");
+    this.redirect('/');
+    return;
+  }
   var questionId = this.query.questionId;
-  console.log(questionId);
   var question = yield questions.findOne(questionId);
+
+  if(!utils.exists(question)){
+    this.set('ErrorMessage', "No question found for id: '" + questionId + "'");
+    this.redirect('/');
+    return;
+  }
 
   question.tagString = question.tags.join(',');
   question.id = question._id.toString();
