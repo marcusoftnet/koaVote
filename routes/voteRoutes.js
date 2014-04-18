@@ -17,7 +17,8 @@ var questions = wrap(db.get('questions'));
  * Show voting page
  */
 module.exports.showAddVote = function *() {
-  var questionId = this.query.questionid;
+  var questionId = this.query.questionId;
+  console.log(questionId);
   var question = yield questions.findOne(questionId);
 
   question.tagString = question.tags.join(',');
@@ -29,18 +30,24 @@ module.exports.showAddVote = function *() {
 /**
  * Store a vote.
  */
-module.exports.addVote = function *create() {
+module.exports.addVote = function *() {
   var vote = yield parse(this);
 
   // Validate
+  var errorRedirectUrl = '/vote?questionId=' + vote.questionId;
+  if(!utils.existsAndNonEmpty(vote.questionId)){
+    this.set('ErrorMessage', 'QuestionId required');
+    this.redirect(errorRedirectUrl);
+    return;
+  }
   if(!utils.existsAndNonEmpty(vote.hospital)){
     this.set('ErrorMessage', 'Hospital required');
-    this.redirect('/');
+    this.redirect(errorRedirectUrl);
     return;
   }
   if(!utils.existsAndNonEmpty(vote.voteValue)){
     this.set('ErrorMessage', 'Vote value required');
-    this.redirect('/');
+    this.redirect(errorRedirectUrl);
     return;
   }
 
