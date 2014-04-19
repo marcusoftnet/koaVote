@@ -8,6 +8,7 @@ A very simple voting site using Koa
 ## Todo
 * Filter the export on querystring parameters (?from=20120101&to=20120131&averagePer=day/week/month for example)
 * Make pretty GUI-wise :P
+* Add login for create new question stuff
 
 ## Done
 * Export xls as a file
