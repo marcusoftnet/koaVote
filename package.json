@@ -28,6 +28,6 @@
     "supertest": "*"
   },
   "engines": {
-    "node": ">= 11.9"
+    "node": "0.11.12"
   }
 }
