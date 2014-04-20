@@ -1,12 +1,12 @@
 {
   "name": "koaVote",
   "version": "0.0.1",
-  "repository" : "https://github.com/marcusoftnet/koaVote",
+  "repository": "https://github.com/marcusoftnet/koaVote",
   "description": "A very simple voting site",
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec",
-    "start": "nodemon --harmony -e html app.js"
+    "start": "./node_modules/nodemon/bin/nodemon.js --harmony -e html app.js"
   },
   "author": "@marcusoftnet",
   "license": "MIT",
@@ -19,7 +19,8 @@
     "koa-static": "~1.4.3",
     "swig": "^1.2.2",
     "monk": "^0.8.1",
-    "co-monk": "^1.0.0"
+    "co-monk": "^1.0.0",
+    "nodemon": "^1.0.17"
   },
   "devDependencies": {
     "co": "^3.0.0",
