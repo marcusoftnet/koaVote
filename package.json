@@ -8,7 +8,7 @@
     "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec",
     "start": "./node_modules/nodemon/bin/nodemon.js --harmony -e html app.js"
   },
-  "author": "@marcusoftnet",
+  "author": "@marcusoftnet - Marcus Hammarberg",
   "license": "MIT",
   "dependencies": {
     "co-body": "0.0.1",
