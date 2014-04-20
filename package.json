@@ -6,7 +6,8 @@
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec",
-    "start": "./node_modules/nodemon/bin/nodemon.js --harmony -e html app.js prod"
+    "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
+    "startLocal": "nodemon --harmony -e html app.js"
   },
   "author": "@marcusoftnet - Marcus Hammarberg",
   "license": "MIT",
