@@ -1,6 +1,6 @@
-var mongoDevUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "localhost:27017/koaVote_Dev";
-var mongoStageUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "localhost:27017/koaVote_Test";
-var mongoProdUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "localhost:27017/koaVote_Prod";
+var mongoDevUri = process.env.MONGOHQ_URL || "localhost:27017/koaVote_Dev";
+var mongoStageUri = process.env.MONGOHQ_URL || "localhost:27017/koaVote_Test";
+var mongoProdUri = process.env.MONGOHQ_URL || "localhost:27017/koaVote_Prod";
 
 var config = {
   local: {
