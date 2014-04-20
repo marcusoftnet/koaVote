@@ -14,6 +14,9 @@ app.use(logger());
 app.use(serve(__dirname + '/public'));
 
 // routes
+var homeRoutes = require('./routes/homeRoutes.js');
+app.use(route.get('/', homeRoutes.showHome))
+
 var voteRoutes = require('./routes/voteRoutes.js');
 app.use(route.get('/vote', voteRoutes.showAddVote));
 app.use(route.post('/vote', voteRoutes.addVote));
