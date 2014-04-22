@@ -6,7 +6,6 @@ A very simple voting site using Koa
 # Backlog
 
 ## Todo
-* Home page contains list of questions/polls.
 * Create a page for creating export
 * Create a link to the export page from the question-page
 * Move the export functionality under the question, route-wise
@@ -24,3 +23,4 @@ A very simple voting site using Koa
 * Update question
 * Update the vote page so that it get the data from mongo
 * Make sure that after adding comment you're redirected back to the question in question :)
+* Home page contains list of questions/polls.
