@@ -1,10 +1,5 @@
 var render = require('../lib/render');
-var config = require('../config')();
-
-var monk = require('monk');
-var wrap = require('co-monk');
-var db = monk(config.mongoUrl);
-var questions = wrap(db.get('questions'));
+var questions = require('./utils.js').questions;
 
 /**
  * Show the home page

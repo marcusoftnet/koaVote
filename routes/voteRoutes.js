@@ -4,14 +4,8 @@
 var parse = require('co-body');
 var render = require('../lib/render');
 var utils = require('./utils.js');
-var config = require('../config')();
-
-// Set up monk
-var monk = require('monk');
-var wrap = require('co-monk');
-var db = monk(config.mongoUrl);
-var votes = wrap(db.get('votes')); // TODO: Move to utils
-var questions = wrap(db.get('questions'));
+var votes = utils.votes;
+var questions = utils.questions;
 
 /**
  * Show voting page

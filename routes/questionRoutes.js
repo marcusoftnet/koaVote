@@ -3,14 +3,8 @@
  */
 var parse = require('co-body');
 var render = require('../lib/render');
-var config = require('../config')();
 var utils = require('./utils.js');
-
-// Set up monk
-var monk = require('monk');
-var wrap = require('co-monk');
-var db = monk(config.mongoUrl);
-var questions = wrap(db.get('questions'));
+var questions = utils.questions;
 
 /**
  * Show question adding page

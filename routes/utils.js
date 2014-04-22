@@ -1,3 +1,15 @@
+var config = require('../config')();
+
+// Set up monk
+var monk = require('monk');
+var wrap = require('co-monk');
+var db = monk(config.mongoUrl);
+var votes = wrap(db.get('votes'));
+module.exports.votes = votes;
+var questions = wrap(db.get('questions'));
+module.exports.questions = questions;
+
+
 var exists = function (value) {
 	if(value === undefined)
 		return false;
