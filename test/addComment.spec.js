@@ -40,7 +40,7 @@ describe('Adding comments', function(){
 				.post('/vote/' + vote._id + '/comment')
 				.send({comment: 'A nice little comment'})
 	      		.expect(302)
-	      		.expect('location', '/')
+	      		.expect('location', '/vote?questionId='+vote.questionId)
 				.end(done);
 		})();
 	});

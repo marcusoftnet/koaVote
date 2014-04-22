@@ -71,7 +71,8 @@ module.exports.addVote = function *() {
  * Show thank you form, and add a comment
  */
 module.exports.showAddComment = function *(id) {
-  this.body = yield render('comment', { voteId : id });
+  var vote = yield votes.findById(id);
+  this.body = yield render('comment', { voteId : id, questionId : vote.questionId });
 };
 
 /**
@@ -80,11 +81,14 @@ module.exports.showAddComment = function *(id) {
 module.exports.addComment = function *(id){
   var posted = yield parse(this);
 
-  var vote = yield votes.findById(id); // TODO: This should be able to do in one go.
-  vote.comment = posted.comment;
-  yield votes.updateById(id, vote);
+  var vote = yield votes.findAndModify(
+      {_id : id },
+      { $set: {comment : posted.comment }});
+  // var vote = yield votes.findById(id); // TODO: This should be able to do in one go.
+  // vote.comment = posted.comment;
+  // yield votes.updateById(id, vote);
 
-  this.redirect('/');
+  this.redirect('/vote?questionId=' + vote.questionId);
 };
 
 /**
