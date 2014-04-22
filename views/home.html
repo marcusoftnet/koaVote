@@ -5,4 +5,17 @@
 {% block content %}
 <h1>Welcome to the koaVote site</h1>
 
+<h2>These are the current polls</h2>
+<ul>
+    {% for question in questions %}
+    <li>
+    	<b>{{ question.questionTitle }}</b> ({{ question.hospital}})
+    	<a href="/vote?questionId={{ question._id.toString() }}">Vote here</a>
+    	<a href="/question/{{ question._id.toString() }}">Update here</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="/question/new">Create a new question</a>
+
 {% endblock %}

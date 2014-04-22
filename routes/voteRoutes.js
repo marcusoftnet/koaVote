@@ -83,10 +83,8 @@ module.exports.addComment = function *(id){
 
   var vote = yield votes.findAndModify(
       {_id : id },
-      { $set: {comment : posted.comment }});
-  // var vote = yield votes.findById(id); // TODO: This should be able to do in one go.
-  // vote.comment = posted.comment;
-  // yield votes.updateById(id, vote);
+      { $set: {comment : posted.comment }}
+  );
 
   this.redirect('/vote?questionId=' + vote.questionId);
 };
