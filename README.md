@@ -6,6 +6,9 @@ A very simple voting site using Koa
 # Backlog
 
 ## Todo
+* Home page contains list of questions/polls.
+* Create a page for creating export
+* Create a link to the export page from the question-page
 * Move the export functionality under the question, route-wise
 * Filter the export on querystring parameters (?from=20120101&to=20120131&averagePer=day/week/month for example)
 * Make pretty GUI-wise :P
