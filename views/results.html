@@ -3,6 +3,11 @@
 {% block title %}Results{% endblock %}
 
 {% block content %}
-  <h1>Results for: '{{question.questionTitle}}' </h1>
-  
+	<h1>Results for: '{{question.questionTitle}}' </h1>
+
+	<ul>
+  	{% for vote in votes %}
+    	<li>{{ vote.voteValue }} - {{ vote.created_at.toDateString() }}</li>
+  	{% endfor %}
+	</ul>
 {% endblock %}

@@ -6,13 +6,13 @@ A very simple voting site using Koa
 # Backlog
 
 ## Todo
-* Create a page for creating export
-* Create a link to the export page from the question-page
-* Move the export functionality under the question, route-wise
-* Filter the export on querystring parameters (?from=20120101&to=20120131&averagePer=day/week/month for example)
+* Move the export to Excel to the result page
+* Create some nice graphs using the Google Charts
+* Add filters for the result page so that it can be filtrered on
+** Date span
+** Tags
 * Make pretty GUI-wise :P
 * Add login for create new question stuff
-* Push to Heroku
 
 ## Done
 * Export xls as a file
@@ -22,5 +22,10 @@ A very simple voting site using Koa
 * Create question-functionality, that:
 * Update question
 * Update the vote page so that it get the data from mongo
+* Push to Heroku
 * Make sure that after adding comment you're redirected back to the question in question :)
 * Home page contains list of questions/polls.
+* Create a page for showing result of a question
+* Create a link to the result page from the question-page
+* Move the result functionality under the question, route-wise
+

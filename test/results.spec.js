@@ -21,7 +21,7 @@ describe('Showing result for question', function(){
 			});
 
 			request
-				.get('/result/' + q._id)
+				.get('/question/' + q._id + '/results')
 				.expect('Content-Type', /html/)
 				.expect(function (req) {
 		  			req.text.should.containEql(q.questionTitle);
