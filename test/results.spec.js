@@ -3,7 +3,7 @@ var co = require('co');
 var should = require('should');
 var request = testHelpers.request;
 
-describe('Showing result for question', function(){
+describe('Showing results', function(){
 	beforeEach(function (done) {
 		testHelpers.removeAllDocs(done);
 	});
@@ -12,21 +12,11 @@ describe('Showing result for question', function(){
 		testHelpers.removeAllDocs(done);
 	});
 
-	it('has a page to add votes', function(done){
-		co(function *(){
-			var q = yield testHelpers.questions.insert({
-				tags : ['RS Bungsu', 'tag 1', 'tag 2', 'tag 3'],
-				questionTitle : 'What did you like your stay?'
-			});
-
-			request
-				.get('/question/' + q._id + '/results')
-				.expect('Content-Type', /html/)
-				.expect(function (req) {
-		  			req.text.should.containEql(q.questionTitle);
-		  		})
-	      		.expect(200)
-				.end(done);
-		})();
+	it('has a page to request results from', function(done){
+		request
+			.get('/results')
+			.expect('Content-Type', /html/)
+      		.expect(200)
+			.end(done);
 	});
 });

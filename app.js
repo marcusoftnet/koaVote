@@ -32,7 +32,7 @@ app.use(route.get('/question/:id', questionRoutes.showQuestion));
 app.use(route.post('/question/:id/update', questionRoutes.updateQuestion));
 
 var resultRoutes = require('./routes/resultRoutes.js');
-app.use(route.get('/question/:questionId/results', resultRoutes.showResults));
+app.use(route.get('/results', resultRoutes.showResults));
 
 // listen
 app.listen(config.port);

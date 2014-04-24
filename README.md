@@ -9,15 +9,15 @@ A very simple voting site using Koa
 ### The model clean up
 * The votes should have an array of tags, for searching - DONE
 * The question should just prefill the vote-page with tags - DONE
-* The hospital field should go away, and instead be a tag 
+* The hospital field should go away, and instead be a tag - DONE
 * The results should NOT be /question/result, but just /result
 ** optionally prefilled with tags from the question
 ** date span
 ** tags
 
 
-* Move the export to Excel to the result page
-* Create some nice graphs using the Google Charts
+* Export the displayed results to Excel (see export route)
+* Create some nice result graphs using the Google Charts
 * Add filters for the result page so that it can be filtrered on
 ** Date span
 ** Tags
