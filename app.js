@@ -10,7 +10,7 @@ var app = module.exports = koa();
 var config = require('./config')();
 
 // middleware
-app.use(logger());
+//app.use(logger());
 app.use(serve(__dirname + '/public'));
 
 // routes
@@ -27,12 +27,12 @@ app.use(route.get('/vote/export/:format', voteRoutes.exportTo));
 var questionRoutes = require('./routes/questionRoutes.js');
 app.use(route.get('/question/new', questionRoutes.showAddQuestion));
 app.use(route.post('/question/new', questionRoutes.addQuestion));
-
 app.use(route.get('/question/:id', questionRoutes.showQuestion));
 app.use(route.post('/question/:id/update', questionRoutes.updateQuestion));
 
 var resultRoutes = require('./routes/resultRoutes.js');
-app.use(route.get('/results', resultRoutes.showResults));
+app.use(route.get('/results', resultRoutes.showResultsPage));
+app.use(route.post('/results', resultRoutes.getResults));
 
 // listen
 app.listen(config.port);

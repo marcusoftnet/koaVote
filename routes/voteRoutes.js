@@ -1,6 +1,3 @@
-/**
- * Module dependencies.
- */
 var parse = require('co-body');
 var render = require('../lib/render');
 var utils = require('./utils.js');

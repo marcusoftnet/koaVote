@@ -6,16 +6,24 @@
 	<h1>Get results</h1>
 	<form name="resultForm" action="/results" method="post">
 		<p>
+			<label for='questionId'>Filter by question:</label>
+			<select id="questionId" name='questionId'>
+    			{% for question in vm.questions %}
+				<option id="{{ questionId._id}}">{{ question.questionTitle }}</option>
+    			{% endfor %}
+			</select>
+		</p>
+		<p>
 			<label for='tags'>Tags:</label>
 			<input type="text" id="tags" name="tags" value="" />
 		</p>
 		<p>
 			<label for='from'>From date:</label>
-			<input type="date" id="from" name="from" value="" />
+			<input type="date" id="from" name="from" value="{{vm.from}}" />
 		</p>
 		<p>
 			<label for='to'>To date:</label>
-			<input type="date" id="to" name="to" value="" />
+			<input type="date" id="to" name="to" value="{{vm.to}}" />
 		</p>
 		<input type="submit" value="Show results">
 	</form>

@@ -13,10 +13,24 @@ describe('Showing results', function(){
 	});
 
 	it('has a page to request results from', function(done){
-		request
-			.get('/results')
-			.expect('Content-Type', /html/)
-      		.expect(200)
-			.end(done);
+		co(function *(){
+			var q = yield testHelpers.questions.insert({
+				tags : ['RS Bungsu','tag 1', 'tag 2', 'tag 3'],
+				questionTitle : 'Question Q1?'
+			});
+
+			var q2 = yield testHelpers.questions.insert({
+				tags : ['RS Bungsu', 'tag 1', 'tag 2', 'tag 3'],
+				questionTitle : 'Question Q2?'
+			});
+
+			request
+				.get('/results')
+		  		.expect(function (req) {
+		  			req.text.should.containEql('Question Q1?');
+		  			req.text.should.containEql('Question Q2?');
+		  		})
+				.end(done);
+		})();
 	});
 });

@@ -10,7 +10,8 @@ A very simple voting site using Koa
 * The votes should have an array of tags, for searching - DONE
 * The question should just prefill the vote-page with tags - DONE
 * The hospital field should go away, and instead be a tag - DONE
-* The results should NOT be /question/result, but just /result
+* The results should NOT be /question/result, but just /result - DONE
+* List votes matching criterias on the page
 ** optionally prefilled with tags from the question
 ** date span
 ** tags
