@@ -25,14 +25,12 @@ describe('The home page', function(){
 	it('has a list of all the questions in the system', function(done){
 		co(function *(){
 			var q = yield testHelpers.questions.insert({
-				hospital : 'RS Bungsu',
-				tags : ['tag 1', 'tag 2', 'tag 3'],
+				tags : ['RS Bungsu','tag 1', 'tag 2', 'tag 3'],
 				questionTitle : 'Question Q1?'
 			});
 
 			var q2 = yield testHelpers.questions.insert({
-				hospital : 'RS Bungsu',
-				tags : ['tag 1', 'tag 2', 'tag 3'],
+				tags : ['RS Bungsu', 'tag 1', 'tag 2', 'tag 3'],
 				questionTitle : 'Question Q2?'
 			});
 

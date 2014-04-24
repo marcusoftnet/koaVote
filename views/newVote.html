@@ -6,7 +6,6 @@
   <h1>{{ question.questionTitle }}</h1>
   <form name="voteForm" action="/vote" method="post">
     <p>
-      <input type="hidden" id="hospital" name="hospital" value="{{ question.hospital }}">
       <input type="hidden" id="tagString" name="tagString" value="{{ question.tagString }}">
       <input type="hidden" id="questionId" name="questionId" value="{{ question.id }}">
     </p>

@@ -7,9 +7,9 @@ A very simple voting site using Koa
 
 ## Todo
 ### The model clean up
-* The votes should have an array of tags, for searching
-* The question should just prefill the vote with tags
-* The hospital field should go away, and instead be a tag
+* The votes should have an array of tags, for searching - DONE
+* The question should just prefill the vote-page with tags - DONE
+* The hospital field should go away, and instead be a tag 
 * The results should NOT be /question/result, but just /result
 ** optionally prefilled with tags from the question
 ** date span

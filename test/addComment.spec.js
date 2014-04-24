@@ -8,7 +8,7 @@ describe('Adding comments', function(){
 
 	beforeEach(function (done) {
 		a_test_vote = {
-				hospital: 'RS Bungsu',
+				tags: ['RS Bungsu', 'tag 1'],
 				voteValue : 3,
 				questionId : 12345678990
 			};

@@ -31,11 +31,6 @@ module.exports.addQuestion = function *() {
 	var newQuestionURL = '/question/new';
 
 	// Validate
-	if(!utils.existsAndNonEmpty(postedData.hospital)){
-		this.set('ErrorMessage', 'Hospital required');
-		this.redirect(newQuestionURL);
-		return;
-	}
 	if(!utils.existsAndNonEmpty(postedData.questionTitle)){
 		this.set('ErrorMessage', 'Question required');
 		this.redirect(newQuestionURL);
@@ -56,11 +51,6 @@ module.exports.updateQuestion = function *(id) {
 	var postedData = yield parse(this);
 
 	// Validate
-	if(!utils.existsAndNonEmpty(postedData.hospital)){
-		this.set('ErrorMessage', 'Hospital required');
-		this.redirect(questionUrl);
-		return;
-	}
 	if(!utils.existsAndNonEmpty(postedData.questionTitle)){
 		this.set('ErrorMessage', 'Question required');
 		this.redirect(questionUrl);

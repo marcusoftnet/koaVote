@@ -6,19 +6,19 @@
 <table border="1">
   <thead>
     <tr>
-      <th>Hospital</th>
       <th>Date</th>
       <th>Time</th>
       <th>Vote</th>
+      <th>Tags</th>
     </tr>
   </thead>
   <tbody>
     {% for vote in votes %}
     <tr>
-      <td>{{ vote.hospital }}</td>
       <td>{{ vote.created_at.toDateString() }}</td>
       <td>{{ vote.created_at.toTimeString() }}</td>
       <td>{{ vote.voteValue }}</td>
+      <td>{{ vote.tags.Join(',') }}</td>
     </tr>
     {% endfor %}
   </tbody>

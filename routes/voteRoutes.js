@@ -44,11 +44,6 @@ module.exports.addVote = function *() {
     this.redirect(errorRedirectUrl);
     return;
   }
-  if(!utils.existsAndNonEmpty(vote.hospital)){
-    this.set('ErrorMessage', 'Hospital required');
-    this.redirect(errorRedirectUrl);
-    return;
-  }
   if(!utils.existsAndNonEmpty(vote.voteValue)){
     this.set('ErrorMessage', 'Vote value required');
     this.redirect(errorRedirectUrl);

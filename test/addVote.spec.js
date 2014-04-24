@@ -7,10 +7,9 @@ describe('Adding votes', function(){
 	var a_test_vote = {};
 	beforeEach(function (done) {
 		a_test_vote  = {
-			hospital: 'RS Bungsu',
 			voteValue : 3,
 			questionId : 1234567,
-			tagString : "tag 1, one with spaces, and another"
+			tagString : 'RS Bungsu, tag 1, one with spaces, and another'
 		};
 		testHelpers.removeAllDocs(done);
 	});
@@ -22,8 +21,7 @@ describe('Adding votes', function(){
 	it('has a page to add votes', function(done){
 		co(function *(){
 			var q = yield testHelpers.questions.insert({
-				hospital : 'RS Bungsu',
-				tags : ['tag 1', 'tag 2', 'tag 3'],
+				tags : ['RS Bungsu', 'tag 1', 'tag 2', 'tag 3'],
 				questionTitle : 'What did you like your stay?'
 			});
 
@@ -62,17 +60,7 @@ describe('Adding votes', function(){
 			.expect('location', /comment/)
 			.end(done);
 	});
-
-	it('requires a hospital set', function (done) {
-		delete a_test_vote.hospital;
-		request
-			.post('/vote')
-			.send(a_test_vote)
-			.expect(302)
-			.expect('location', '/vote?questionId=1234567')
-			.expect('ErrorMessage', 'Hospital required')
-			.end(done);
-	});
+	
 	it('requires a vote value', function (done) {
 		delete a_test_vote.voteValue;
 		request

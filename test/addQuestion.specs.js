@@ -9,8 +9,7 @@ describe('Adding questions', function(){
 
 	beforeEach(function (done) {
 		a_test_question  = {
-			hospital: 'RS Bungsu',
-			tagString : 'tag 1, tag 2, tag 3',
+			tagString : 'RS Bungsu, tag 1, tag 2, tag 3',
 			questionTitle : 'What about this?' };
 
 		testHelpers.removeAllDocs(done);
@@ -37,19 +36,7 @@ describe('Adding questions', function(){
 			.end(done);
 	});
 
-	it('requires a title', function (done) {
-		delete a_test_question.hospital;
-
-		request
-			.post(NEW_QUESTION_URL)
-			.send(a_test_question)
-			.expect(302)
-			.expect('location', NEW_QUESTION_URL)
-			.expect('ErrorMessage', 'Hospital required')
-			.end(done);
-	});
-
-	it('requires a question', function (done) {
+	it('requires a question title', function (done) {
 		delete a_test_question.questionTitle;
 
 		request
