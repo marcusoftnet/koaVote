@@ -26,3 +26,10 @@ module.exports.existsAndNonEmpty = function (value){
 		return false;
 	return true;
 };
+
+module.exports.trimTags = function (tags){
+	for (var i = 0; i < tags.length; i++) {
+		tags[i] = tags[i].trim();
+	};
+	return tags;
+};

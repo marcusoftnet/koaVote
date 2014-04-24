@@ -55,8 +55,12 @@ module.exports.addVote = function *() {
     return;
   }
 
-  // Store it!
+  // Create it
+  vote.tags = utils.trimTags(vote.tagString.split(','));
+  delete vote.tagString;
   vote.created_at = new Date;
+
+  // Store it!
   var v = yield votes.insert(vote);
   this.redirect('/vote/' + v._id + '/comment');
 };

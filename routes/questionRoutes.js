@@ -77,14 +77,7 @@ function createQuestionFromPostedData(postedData){
 	return {
 		hospital : postedData.hospital,
 		questionTitle : postedData.questionTitle,
-		tags : trimTags(postedData.tagString.split(',')),
+		tags : utils.trimTags(postedData.tagString.split(',')),
 		created_at : new Date
 	};
-};
-
-function trimTags(tags){
-	for (var i = 0; i < tags.length; i++) {
-		tags[i] = tags[i].trim();
-	};
-	return tags;
 };

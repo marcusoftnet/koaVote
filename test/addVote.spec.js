@@ -6,7 +6,12 @@ var request = testHelpers.request;
 describe('Adding votes', function(){
 	var a_test_vote = {};
 	beforeEach(function (done) {
-		a_test_vote  = { hospital: 'RS Bungsu', voteValue : 3, questionId : 1234567 }
+		a_test_vote  = {
+			hospital: 'RS Bungsu',
+			voteValue : 3,
+			questionId : 1234567,
+			tagString : "tag 1, one with spaces, and another"
+		};
 		testHelpers.removeAllDocs(done);
 	});
 
