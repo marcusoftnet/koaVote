@@ -33,3 +33,27 @@ Heroku dynamically assigns your app a port, so you can't set the port to a fixed
 
 That way it'll still listen to port 5000 when you test locally, but it will also work on Heroku.
 http://stackoverflow.com/questions/15693192/heroku-node-js-error-web-process-failed-to-bind-to-port-within-60-seconds-of
+
+# SyntaxError: Unexpected identifier on yield
+´´´javascript
+function getVotesForCritera(postedCriteria){
+	var votes = yield votes.find({});
+	return votes;
+};
+´´´
+´´´ bash
+	var votes = yield votes.find({});
+	                  ^^^^^
+	SyntaxError: Unexpected identifier
+´´´
+
+This because the yield keyword is not valid in a function without a *. A asterisk denotes a generator function. Yield is only valid within a generator function.
+
+Pretty easy fix.
+
+´´´javascript
+function *getVotesForCritera(postedCriteria){
+	var votes = yield votes.find({});
+	return votes;
+};
+´´´

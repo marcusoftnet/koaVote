@@ -1,5 +1,6 @@
 var parse = require('co-body');
 var render = require('../lib/render');
+var utils = require('./utils.js');
 var questions = require('./utils.js').questions;
 var votes = require('./utils.js').votes;
 
@@ -8,8 +9,8 @@ var votes = require('./utils.js').votes;
  */
 module.exports.showResultsPage = function *() {
 	var vm = {
-		 to : getToDefault(),
-		 from : getFromDefault(),
+		to : getToDefault(),
+		from : getFromDefault(),
 		questions : yield questions.find({})
 	};
 	this.body = yield render('results', { vm : vm });
@@ -20,12 +21,38 @@ module.exports.showResultsPage = function *() {
  */
 module.exports.getResults = function *() {
 	var postedData = yield parse(this);
-	this.body = yield render('results', {votes : voteList});
+	postedData.tags = utils.splitAndTrimTagString(postedData.tagString);
+
+	var vm = yield recreateResultVmFromPostedData(postedData);
+	vm.resultVotes = yield getVotesForCritera(postedData);
+
+	this.body = yield render('results', { vm : vm });
 };
 
-function getVotesForCritera(postedCriteria){
+function *getVotesForCritera(postedCriteria){
+	// create mongo-filter object
+	var filter = { };
+	if(postedCriteria.questionId != ""){
+		filter.questionId = postedCriteria.questionId;
+	}
 
+	// TODO: When connection is back
+	// - between from and to
+	// - votes with tags
+
+	// Do search
+	return yield votes.find(filter);
 };
+
+function *recreateResultVmFromPostedData (postedData) {
+	return {
+		to : postedData.to,
+		from : postedData.from,
+		selectedQuestionId : postedData.questionId,
+		tagString : postedData.tagString,
+		questions : yield questions.find({})
+	};
+}
 
 function getToDefault(){
 	var now = new Date;

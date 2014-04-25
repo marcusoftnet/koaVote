@@ -48,7 +48,7 @@ module.exports.addVote = function *() {
   }
 
   // Create it
-  vote.tags = utils.trimTags(vote.tagString.split(','));
+  vote.tags = utils.splitAndTrimTagString(vote.tagString);
   delete vote.tagString;
   vote.created_at = new Date;
 

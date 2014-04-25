@@ -19,11 +19,11 @@ A very simple voting site using Koa
 
 * Export the displayed results to Excel (see export route)
 * Create some nice result graphs using the Google Charts
-* Add filters for the result page so that it can be filtrered on
-** Date span
-** Tags
+* Make sure the selected questionId is set as selected when posting back to result form
 * Make pretty GUI-wise :P
-* Add login for create new question stuff
+* Basic authentication for:
+- See results (link)
+- Create question (link)
 
 ## Done
 * Export xls as a file

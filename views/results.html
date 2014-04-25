@@ -8,14 +8,15 @@
 		<p>
 			<label for='questionId'>Filter by question:</label>
 			<select id="questionId" name='questionId'>
+				<option value="">all questions</option>
     			{% for question in vm.questions %}
-				<option id="{{ questionId._id}}">{{ question.questionTitle }}</option>
+				<option	value="{{ question._id.toString()}}">{{ question.questionTitle }}</option>
     			{% endfor %}
 			</select>
 		</p>
 		<p>
-			<label for='tags'>Tags:</label>
-			<input type="text" id="tags" name="tags" value="" />
+			<label for='tagString'>Tags:</label>
+			<input type="text" id="tagString" name="tagString" value="{{vm.tagString}}" />
 		</p>
 		<p>
 			<label for='from'>From date:</label>
@@ -27,4 +28,10 @@
 		</p>
 		<input type="submit" value="Show results">
 	</form>
+	<hr />
+	<ul>
+		{% for vote in vm.resultVotes %}
+		<li>{{ vote.voteValue }} @ {{ vote.created_at.toString() }} (Comment: {{ vote.comment }})</li>
+		{%endfor%}
+	</ul>
 {% endblock %}

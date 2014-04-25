@@ -10,7 +10,7 @@ var app = module.exports = koa();
 var config = require('./config')();
 
 // middleware
-//app.use(logger());
+app.use(logger());
 app.use(serve(__dirname + '/public'));
 
 // routes

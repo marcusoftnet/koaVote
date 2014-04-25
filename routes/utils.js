@@ -27,7 +27,8 @@ module.exports.existsAndNonEmpty = function (value){
 	return true;
 };
 
-module.exports.trimTags = function (tags){
+module.exports.splitAndTrimTagString = function (tagString){
+	var tags = tagString.split(',');
 	for (var i = 0; i < tags.length; i++) {
 		tags[i] = tags[i].trim();
 	};
