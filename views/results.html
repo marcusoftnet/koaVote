@@ -31,7 +31,7 @@
 	<hr />
 	<ul>
 		{% for vote in vm.resultVotes %}
-		<li>{{ vote.voteValue }} @ {{ vote.created_at.toString() }} (Comment: {{ vote.comment }})</li>
+		<li>{{ vote.voteValue }}</li> <!-- @ {{ vote.created_at.toString() }} (Comment: {{ vote.comment }}) -->
 		{%endfor%}
 	</ul>
 {% endblock %}
