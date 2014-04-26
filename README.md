@@ -15,7 +15,11 @@ A very simple voting site using Koa
 ** optionally prefilled with tags from the question
 ** date span
 ** tags
-
+* Data, grouped:
+** day
+** week
+** month
+** total
 
 * Export the displayed results to Excel (see export route)
 * Create some nice result graphs using the Google Charts
