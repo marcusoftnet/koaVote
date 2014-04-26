@@ -31,6 +31,12 @@ module.exports.splitAndTrimTagString = function (tagString){
 	var tags = tagString.split(',');
 	for (var i = 0; i < tags.length; i++) {
 		tags[i] = tags[i].trim();
+
+		// Remove empty tags
+		if(tags[i].length === 0){
+			tags.splice(i);
+			i--;
+		}
 	};
 	return tags;
 };

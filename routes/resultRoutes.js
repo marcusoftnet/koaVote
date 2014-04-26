@@ -32,8 +32,12 @@ module.exports.getResults = function *() {
 function *getVotesForCritera(postedCriteria){
 	// create mongo-filter object
 	var filter = { };
-	if(postedCriteria.questionId != ""){
+	if(postedCriteria.questionId != ''){
 		filter.questionId = postedCriteria.questionId;
+	}
+
+	if(postedCriteria.tags.length > 0){
+		filter.tags = { $in : postedCriteria.tags};
 	}
 
 	// TODO: When connection is back
@@ -41,6 +45,7 @@ function *getVotesForCritera(postedCriteria){
 	// - votes with tags
 
 	// Do search
+	console.dir(filter);
 	return yield votes.find(filter);
 };
 
