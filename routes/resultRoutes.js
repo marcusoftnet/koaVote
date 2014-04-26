@@ -9,8 +9,8 @@ var votes = require('./utils.js').votes;
  */
 module.exports.showResultsPage = function *() {
 	var vm = {
-		to : getToDefault(),
-		from : getFromDefault(),
+		// to : getToDefault(),
+		// from : getFromDefault(),
 		questions : yield questions.find({})
 	};
 	this.body = yield render('results', { vm : vm });
@@ -40,12 +40,14 @@ function *getVotesForCritera(postedCriteria){
 		filter.tags = { $in : postedCriteria.tags};
 	}
 
-	// TODO: When connection is back
-	// - between from and to
-	// - votes with tags
+	if(postedCriteria.from.length > 0){
+		filter.created_at = {
+	        $gte: utils.yyyymmdd_to_date(postedCriteria.from),
+	        $lte: utils.yyyymmdd_to_date(postedCriteria.to)
+	    };
+	}
 
 	// Do search
-	console.dir(filter);
 	return yield votes.find(filter);
 };
 

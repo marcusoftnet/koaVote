@@ -18,5 +18,9 @@ module.exports.removeAllDocs = function(done){
 	})(done);
 };
 
+module.exports.addDaysToDate = function (date, daysToAdd) {
+	return new Date(date.getDate() + 1);
+};
+
 var app = require('../app.js');
 module.exports.request = require('supertest').agent(app.listen());

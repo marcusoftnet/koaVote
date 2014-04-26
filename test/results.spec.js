@@ -1,4 +1,5 @@
 var testHelpers = require('./testHelpers.js');
+var utils = require('../routes/utils.js');
 var co = require('co');
 var should = require('should');
 var request = testHelpers.request;
@@ -40,7 +41,6 @@ describe('Showing results', function(){
 				.end(done);
 		})();
 	});
-
 	it('filters the results by questionid', function (done) {
 		co(function *(){
 			yield [
@@ -110,5 +110,32 @@ describe('Showing results', function(){
 				.end(done);
 		})();
 	});
-	it('filters the results on to and from dates');
+	it('filters the results on to and from dates', function (done) {
+		co(function *(){
+			var t1 = utils.yyyymmdd_to_date('2014-01-01');
+			var t2 = utils.yyyymmdd_to_date('2014-01-15');
+			var t3 = utils.yyyymmdd_to_date('2014-01-31');
+			var t4 = utils.yyyymmdd_to_date('2014-02-01');
+
+			yield [
+				testHelpers.votes.insert({ voteValue : 1, created_at : t1, questionId : 111}),
+				testHelpers.votes.insert({ voteValue : 2, created_at : t2, questionId : 111}),
+				testHelpers.votes.insert({ voteValue : 3, created_at : t3, questionId : 111}),
+				testHelpers.votes.insert({ voteValue : 4, created_at : t4, questionId : 111})
+			];
+
+			resultPostData.from = '2014-01-15';
+			resultPostData.to = '2014-01-31';
+
+			request
+				.post('/results')
+				.send(resultPostData)
+				.expect(200)
+		  		.expect(function (res) {
+		  			res.text.should.containEql('<li>2</li>');
+		  			res.text.should.containEql('<li>3</li>');
+		  		})
+				.end(done);
+		})();
+	});
 });
