@@ -19,7 +19,6 @@ A very simple voting site using Koa
 - Create question (link)
 
 ## Doing
-* Make pretty GUI-wise :P
 
 ## Done
 * Export xls as a file
@@ -41,3 +40,4 @@ A very simple voting site using Koa
 * The hospital field should go away, and instead be a tag - DONE
 * The results should NOT be /question/result, but just /result - DONE
 * List votes matching criterias on the page - DONE
+* Make pretty GUI-wise :P - DONE
