@@ -6,28 +6,20 @@ A very simple voting site using Koa
 # Backlog
 
 ## Todo
-### The model clean up
-* The votes should have an array of tags, for searching - DONE
-* The question should just prefill the vote-page with tags - DONE
-* The hospital field should go away, and instead be a tag - DONE
-* The results should NOT be /question/result, but just /result - DONE
-* List votes matching criterias on the page
-** optionally prefilled with tags from the question
-** date span
-** tags
-* Data, grouped:
+* Group result data on:
 ** day
 ** week
 ** month
 ** total
-
 * Export the displayed results to Excel (see export route)
 * Create some nice result graphs using the Google Charts
 * Make sure the selected questionId is set as selected when posting back to result form
-* Make pretty GUI-wise :P
 * Basic authentication for:
 - See results (link)
 - Create question (link)
+
+## Doing
+* Make pretty GUI-wise :P
 
 ## Done
 * Export xls as a file
@@ -43,4 +35,9 @@ A very simple voting site using Koa
 * Create a page for showing result of a question
 * Create a link to the result page from the question-page
 * Move the result functionality under the question, route-wise
-
+### The model clean up
+* The votes should have an array of tags, for searching - DONE
+* The question should just prefill the vote-page with tags - DONE
+* The hospital field should go away, and instead be a tag - DONE
+* The results should NOT be /question/result, but just /result - DONE
+* List votes matching criterias on the page - DONE
