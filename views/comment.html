@@ -3,12 +3,19 @@
 {% block title %}Thank you!{% endblock %}
 
 {% block content %}
-  <h1>Thank you for you vote!</h1>
-  <p>Do you want to add a comment?
-  <form name="commentForm" action="/vote/{{ voteId }}/comment" method="post">
-    <textarea id="comment" name="comment" placeholder="Comment here"></textarea>
-    <br />
-    <input type="submit" value="Add comment">
-  </form>
-  <a href="/vote?questionId={{ questionId }}">No, thank you</a>
+<h1>Thank you for you vote!</h1>
+<p class="lead">Do you want to add a comment?</p>
+<form name='commentForm' action='/vote/{{ voteId }}/comment' method='post'  class='form-horizontal' role='form'>
+<div class='form-group'>
+  <div class='col-sm-8'>
+  		<textarea id='comment' name='comment' placeholder='Comment here' rows='5' class='form-control input-lg'></textarea>
+	</div>
+</div>
+<div class='form-group'>
+	<div class='col-sm-10'>
+  		<input type='submit' value='Add comment' class='btn btn-primary btn-lg'>
+  		&nbsp;<a href='/vote?questionId={{ questionId }}' class='btn btn-primary btn-lg' role='button'>No, thank you</a>
+		</div>
+	</div>
+</form>
 {% endblock %}

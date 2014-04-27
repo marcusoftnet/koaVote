@@ -1,45 +1,41 @@
-<html>
+<!DOCTYPE html>
+<html lang='en'>
 <head>
   <title>{% block title %}Yayasan vote{% endblock %}</title>
-  <style>
-    body {
-      padding: 80px;
-      font: 16px Helvetica, Arial;
-    }
+    <!-- Superhero theme, of course. From http://bootswatch.com/ -->
+    <link rel='stylesheet' href='/bootstrap-superhero.min.css' />
 
-    h1 {
-      font-size: 2em;
-    }
-
-    h2 {
-      font-size: 1.2em;
-    }
-
-    textarea {
-      width: 500px;
-      height: 300px;
-    }
-
-    input[type=text],
-    textarea {
-      border: 1px solid #eee;
-      border-top-color: #ddd;
-      border-left-color: #ddd;
-      border-radius: 2px;
-      padding: 15px;
-      font-size: .8em;
-    }
-
-    input[type=text] {
-      width: 500px;
-    }
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'></script>
+      <script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'></script>
+    <![endif]-->
   </style>
 </head>
 <body>
-  <section id="content">
-    {% block content %}
-      <p>Missing content!</p>
-    {% endblock %}
-  </section>
-</body>
+
+    <div class='container'>
+      <div class='header'>
+        <h3 class='text-muted'>Koa vote - a simple voting site</h3>
+      </div>
+
+      <div class='jumbotron'>
+        {% block content %}
+          <p>Hmmm... there's no content here. Marcus needs to do some more work!</p>
+        {% endblock %}
+      </div>
+
+      <div class='footer'>
+        <p>&copy; Marcus Hammarberg, <a href='https://twitter.com/marcusoftnet' target='_blank'>@marcusoftnet</a> 2014</p>
+        <p><a href='https://github.com/marcusoftnet/koaVote' target='_blank'>Issues and code</p>
+        <p class='small'>Smilies from <a href='http://pixabay.com/en/users/OpenIcons/' target='_blank'>OpenIcons</a> used under the <a href='http://pixabay.com/go/?t=http%3A%2F%2Fcreativecommons.org%2Fpublicdomain%2Fzero%2F1.0%2Fdeed.en' target='_blank'>Public Domain CC0</a> license
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>
+  </body>
 </html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf8" standalone="no"?>
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient cx="29.28807" cy="15.72098" fx="29.15847" fy="15.75571" gradientUnits="userSpaceOnUse" id="radialGradient2714" r="8.90208">
+<stop offset="0" stop-color="#fffcde"/>
+<stop offset=".64486" stop-color="#f6e76a"/>
+<stop offset="1" stop-color="#ffb738"/>
+</radialGradient>
+<radialGradient cx="25.0527" cy="39.5928" gradientTransform="matrix(1.25,0,0,-1.25,-6.47945,73.66448)" gradientUnits="userSpaceOnUse" id="aigrd2" r="15.7572">
+<stop offset="0" stop-color="#777"/>
+<stop offset="1"/>
+</radialGradient>
+<radialGradient cx="24.71429" cy="38.57143" gradientTransform="matrix(1,0,0,.33333,0,25.71429)" gradientUnits="userSpaceOnUse" id="radialGradient4571" r="19.71429">
+<stop offset="0"/>
+<stop offset="1" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<path d="m44.42857,38.57143a19.71429,6.57143 0 1,1 -39.42857,0 19.71429,6.57143 0 1,1 39.42857,0z" fill="url(#radialGradient4571)" fill-rule="evenodd" opacity=".53165"/>
+<path d="m39.77475,19.00862a8.66206,8.66206 0 1,1 -17.32411,0 8.66206,8.66206 0 1,1 17.32411,0z" fill="url(#radialGradient2714)" fill-rule="evenodd" stroke="#9c8c0a" stroke-linecap="round" stroke-linejoin="round" stroke-width=".48004" transform="matrix(2.08314,0,0,2.08314,-40.54715,-16.49224)"/>
+<path d="m39.77475,19.00862a8.66206,8.66206 0 1,1 -17.32411,0 8.66206,8.66206 0 1,1 17.32411,0z" fill="none" opacity=".67722" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width=".50511" transform="matrix(1.97978,0,0,1.97978,-37.33128,-14.52746)"/>
+<path d="m34.01427,32.03684c-3.72357-4.16401-5.56241-5.63128-9.55178-5.63128-3.90118,0-6.49967,1.68805-9.375,5.98484 3.4333-2.34881 5.30963-3.6495 9.10984-3.6495 3.71184,0 5.75108,1.0507 9.81694,3.29594z" fill="#fff" opacity=".36"/>
+<path d="m34.01427,31.32974c-3.72357-4.16401-5.56241-5.63128-9.55178-5.63128-3.90118,0-6.49967,1.68805-9.375,5.98484 3.4333-2.34881 5.30963-3.6495 9.10984-3.6495 3.71184,0 5.75108,1.0507 9.81694,3.29594z" fill="url(#aigrd2)"/>
+<g transform="translate(.35355,2.39271)">
+<path d="m21.39816,15.32143c0,2.5-1.125,4.5-2.5,4.5s-2.625-2-2.625-4.5 1.125-4.5 2.5-4.5 2.5,2 2.5,4.5h.125z" fill="#fff" opacity=".36"/>
+<path d="m30.68851,15.32143c0,2.5-1.125,4.5-2.5,4.5s-2.5-2-2.5-4.5 1.125-4.5 2.5-4.5 2.5,2 2.5,4.5z" fill="#fff" opacity=".36"/>
+<path d="m21.39816,14.69643c0,2.5-1.125,4.5-2.5,4.5s-2.5-2-2.5-4.5 1.125-4.5 2.5-4.5 2.5,2 2.5,4.5z"/>
+<path d="m30.68851,14.69643c0,2.5-1.125,4.5-2.5,4.5s-2.5-2-2.5-4.5 1.125-4.5 2.5-4.5 2.5,2 2.5,4.5z"/>
+</g>
+</svg>

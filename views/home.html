@@ -3,19 +3,17 @@
 {% block title %}Welcome to the koaVote site{% endblock %}
 
 {% block content %}
-<h1>Welcome to the koaVote site</h1>
-
-<h2>These are the current polls</h2>
-<ul>
-    {% for question in questions %}
-    <li>
-    	<b>{{ question.questionTitle }}</b> ({{ question.hospital}})
-    	<a href="/vote?questionId={{ question._id.toString() }}">Vote here</a>
-    	<a href="/question/{{ question._id.toString() }}">Update here</a>
-    </li>
-    {% endfor %}
-</ul>
-
-<a href="/question/new">Create a new question</a>
+<h1>Current polls</h1>
+<div class='row marketing'>
+	{% for question in questions %}
+	<div class='col-lg-6'>
+		<h4>{{ question.questionTitle }}</h4>
+		<a href='/vote?questionId={{ question._id.toString() }}'class='btn btn-info btn-xs' role='button'>Vote here</a>
+		<a href='/question/{{ question._id.toString() }}' class='btn btn-info btn-xs' role='button'>Update here</a>
+	</div>
+	{% endfor %}
+</div>
+<br />
+<a href='/question/new' class='btn btn-primary btn-lg' role='button'>Create a new question</a>
 
 {% endblock %}
