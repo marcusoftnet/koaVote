@@ -10,11 +10,12 @@ A very simple voting site using Koa
 - Export the displayed results to Excel (see export route)
 - Create some nice result graphs using the Google Charts
 - Make sure the selected questionId is set as selected when posting back to result form
-- Basic authentication for:
-- See results (link)
-- Create question (link)
+
 
 ## Doing
+- Basic authentication for:
+-- See results (link)
+-- Create question (link)
 - Group result data on:
 -- day
 -- week

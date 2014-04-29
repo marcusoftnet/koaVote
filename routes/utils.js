@@ -51,4 +51,4 @@ module.exports.yyyymmdd_to_date = function(str) {
           return str[0];
     }
     return undefined;
-}
+};

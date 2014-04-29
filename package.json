@@ -21,7 +21,8 @@
     "swig": "^1.2.2",
     "monk": "^0.8.1",
     "co-monk": "^1.0.0",
-    "nodemon": "^1.0.17"
+    "nodemon": "^1.0.17",
+    "koa-basic-auth": "~1.1.1"
   },
   "devDependencies": {
     "co": "^3.0.0",
