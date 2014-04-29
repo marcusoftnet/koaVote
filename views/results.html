@@ -5,10 +5,10 @@
 {% block content %}
 	<h1>Query poll results</h1>
 	<p>Get the results by filtering on the different criterias below</p>
-	<form name='resultForm' action='/results' method='post' class='form-horizontal' role='form'>
+	<form name='resultForm' action='/results/show' method='post' class='form-horizontal' role='form'>
 		<div class='form-group'>
 			<label for='questionId' class='col-sm-2 control-label lead'>Question:</label>
-      		<div class='col-sm-8'>
+			<div class='col-sm-8'>
 				<select id='questionId' name='questionId' class='form-control input-lg'>
 					<option value=''>all questions</option>
 					{% for question in vm.questions %}
@@ -19,32 +19,27 @@
 		</div>
 		<div class='form-group'>
 			<label for='tagString' class='col-sm-2 control-label lead'>Tags:</label>
-      		<div class='col-sm-8'>
+			<div class='col-sm-8'>
 				<input type='text' id='tagString' name='tagString' value='{{vm.tagString}}' class='form-control input-lg'/>
 			</div>
 		</div>
 		<div class='form-group'>
 			<label for='from' class='col-sm-2 control-label lead'>From date:</label>
-      		<div class='col-sm-8'>
+			<div class='col-sm-8'>
 				<input type='date' id='from' name='from' value='{{vm.from}}' class='form-control input-lg'/>
 			</div>
 		</div>
 		<div class='form-group'>
 			<label for='to' class='col-sm-2 control-label lead'>To date:</label>
-      		<div class='col-sm-8'>
+			<div class='col-sm-8'>
 				<input type='date' id='to' name='to' value='{{vm.to}}' class='form-control input-lg'/>
 			</div>
 		</div>
 		<div class='form-group'>
-      		<div class="col-sm-2">&nbsp;</div>
-      		<div class="col-sm-10">
+			<div class="col-sm-2">&nbsp;</div>
+			<div class="col-sm-10">
 				<input type='submit' value='Show results' class='btn btn-primary btn-lg'>
+			</div>
 		</div>
 	</form>
-	<hr />
-	<ul>
-		{% for vote in vm.resultVotes %}
-		<li>{{ vote.voteValue }}</li> <!-- @ {{ vote.created_at.toString() }} (Comment: {{ vote.comment }}) -->
-		{%endfor%}
-	</ul>
 {% endblock %}
