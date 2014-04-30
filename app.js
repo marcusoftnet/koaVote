@@ -15,15 +15,7 @@ app.use(serve(__dirname + '/public'));
 
 // routes
 var homeRoutes = require('./routes/homeRoutes.js')(app);
-// var homeRoutes = require('./routes/homeRoutes.js');
-// app.use(route.get('/', homeRoutes.showHome))
-
-var voteRoutes = require('./routes/voteRoutes.js');
-app.use(route.get('/vote', voteRoutes.showAddVote));
-app.use(route.post('/vote', voteRoutes.addVote));
-app.use(route.get('/vote/:id/comment', voteRoutes.showAddComment));
-app.use(route.post('/vote/:id/comment', voteRoutes.addComment));
-app.use(route.get('/vote/export/:format', voteRoutes.exportTo));
+var voteRoutes = require('./routes/voteRoutes.js')(app);
 
 var questionRoutes = require('./routes/questionRoutes.js');
 app.use(route.get('/question/new', questionRoutes.showAddQuestion));

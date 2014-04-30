@@ -1,99 +1,94 @@
 var parse = require('co-body');
+var route = require('koa-route');
 var render = require('../lib/render');
 var utils = require('./utils.js');
 var votes = utils.votes;
 var questions = utils.questions;
 
-/**
- * Show voting page
- */
-module.exports.showAddVote = function *() {
-  if(!utils.exists(this.query.questionId)){
-    this.set('ErrorMessage', "No questionId passed to page");
-    this.redirect('/');
-    return;
-  }
-  var questionId = this.query.questionId;
-  var question = yield questions.findOne(questionId);
+module.exports = function (app) {
+	// routes
+	app.use(route.get('/vote', showAddVote));
+	app.use(route.post('/vote', addVote));
+	app.use(route.get('/vote/:id/comment', showAddComment));
+	app.use(route.post('/vote/:id/comment', addComment));
+	app.use(route.get('/vote/export/:format', exportTo));
 
-  if(!utils.exists(question)){
-    this.set('ErrorMessage', "No question found for id: '" + questionId + "'");
-    this.redirect('/');
-    return;
-  }
+	// handlers
+	function *showAddVote() {
+		if(!utils.exists(this.query.questionId)){
+			this.set('ErrorMessage', "No questionId passed to page");
+			this.redirect('/');
+			return;
+		}
+		var questionId = this.query.questionId;
+		var question = yield questions.findOne(questionId);
 
-  question.tagString = question.tags.join(',');
-  question.id = question._id.toString();
+		if(!utils.exists(question)){
+			this.set('ErrorMessage', "No question found for id: '" + questionId + "'");
+			this.redirect('/');
+			return;
+		}
 
-  this.body = yield render('newVote', { question : question });
-};
+		question.tagString = question.tags.join(',');
+		question.id = question._id.toString();
 
-/**
- * Store a vote.
- */
-module.exports.addVote = function *() {
-  var vote = yield parse(this);
+		this.body = yield render('newVote', { question : question });
+	};
 
-  // Validate
-  var errorRedirectUrl = '/vote?questionId=' + vote.questionId;
-  if(!utils.existsAndNonEmpty(vote.questionId)){
-    this.set('ErrorMessage', 'QuestionId required');
-    this.redirect(errorRedirectUrl);
-    return;
-  }
-  if(!utils.existsAndNonEmpty(vote.voteValue)){
-    this.set('ErrorMessage', 'Vote value required');
-    this.redirect(errorRedirectUrl);
-    return;
-  }
+	function *addVote() {
+		var vote = yield parse(this);
 
-  // Create it
-  vote.tags = utils.splitAndTrimTagString(vote.tagString);
-  delete vote.tagString;
-  vote.created_at = new Date;
+		// Validate
+		var errorRedirectUrl = '/vote?questionId=' + vote.questionId;
+		if(!utils.existsAndNonEmpty(vote.questionId)){
+			this.set('ErrorMessage', 'QuestionId required');
+			this.redirect(errorRedirectUrl);
+			return;
+		}
+		if(!utils.existsAndNonEmpty(vote.voteValue)){
+			this.set('ErrorMessage', 'Vote value required');
+			this.redirect(errorRedirectUrl);
+			return;
+		}
 
-  // Store it!
-  var v = yield votes.insert(vote);
-  this.redirect('/vote/' + v._id + '/comment');
-};
+		// Create it
+		vote.tags = utils.splitAndTrimTagString(vote.tagString);
+		delete vote.tagString;
+		vote.created_at = new Date;
 
-/**
- * Show thank you form, and add a comment
- */
-module.exports.showAddComment = function *(id) {
-  var vote = yield votes.findById(id);
-  this.body = yield render('comment', { voteId : id, questionId : vote.questionId });
-};
+		// Store it!
+		var v = yield votes.insert(vote);
+		this.redirect('/vote/' + v._id + '/comment');
+	};
 
-/**
- * Adds a comment to vote
- */
-module.exports.addComment = function *(id){
-  var posted = yield parse(this);
+	function *showAddComment(id) {
+		var vote = yield votes.findById(id);
+		this.body = yield render('comment', { voteId : id, questionId : vote.questionId });
+	};
 
-  var vote = yield votes.findAndModify(
-      {_id : id },
-      { $set: {comment : posted.comment }}
-  );
+	function *addComment(id){
+		var posted = yield parse(this);
 
-  this.redirect('/vote?questionId=' + vote.questionId);
-};
+		var vote = yield votes.findAndModify(
+				{_id : id },
+				{ $set: {comment : posted.comment }}
+		);
 
-/**
- * Export data
- * TODO: Move to own file?
- */
-module.exports.exportTo = function *list(format) {
-  var voteList = yield votes.find({});
+		this.redirect('/vote?questionId=' + vote.questionId);
+	};
 
-  if (format === 'xls') {
-    this.set('Content-Disposition', 'attachment;filename=data.xls');
-    this.type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-    this.body = yield render('list', { votes: voteList });
-    return;
-  }
+	function *exportTo(format) {
+		var voteList = yield votes.find({});
 
-  // default to json
-  this.type = 'json';
-  this.body = voteList;
+		if (format === 'xls') {
+			this.set('Content-Disposition', 'attachment;filename=data.xls');
+			this.type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+			this.body = yield render('list', { votes: voteList });
+			return;
+		}
+
+		// default to json
+		this.type = 'json';
+		this.body = voteList;
+	};
 };
