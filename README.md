@@ -6,21 +6,22 @@ A very simple voting site using Koa
 # Backlog
 
 ## Todo
-
+- download bootstrap locally for faster (?!) download in Indonesia
+- Group result data on:
+-- day
+-- week
+-- month
+-- total
 - Export the displayed results to Excel (see export route)
 - Create some nice result graphs using the Google Charts
 - Make sure the selected questionId is set as selected when posting back to result form
 
 
 ## Doing
+- Restructuring routes
 - Basic authentication for:
 -- See results (link)
 -- Create question (link)
-- Group result data on:
--- day
--- week
--- month
--- total
 
 ## Done
 - Export xls as a file
