@@ -13,10 +13,7 @@ app.use(serve(__dirname + '/public'));
 var homeRoutes = require('./routes/homeRoutes.js')(app);
 var voteRoutes = require('./routes/voteRoutes.js')(app);
 var questionRoutes = require('./routes/questionRoutes.js')(app);
-
-var resultRoutes = require('./routes/resultRoutes.js');
-app.use(route.get('/results', resultRoutes.showResultsPage));
-app.use(route.post('/results', resultRoutes.getResults));
+var resultRoutes = require('./routes/resultRoutes.js')(app);
 
 // listen
 app.listen(config.port);
