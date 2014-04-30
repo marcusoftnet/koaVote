@@ -42,4 +42,9 @@
 			</div>
 		</div>
 	</form>
+	<ul>
+		{% for vote in vm.resultVotes %}
+		<li>{{ vote.voteValue }}</li>
+		{% endfor %}
+	</ul>
 {% endblock %}
