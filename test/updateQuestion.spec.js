@@ -5,15 +5,12 @@ var request = testHelpers.request;
 
 describe('Updating questions', function(){
 	var a_test_question = {};
-	var user = {};
 
 	beforeEach(function (done) {
 		a_test_question = {
 				questionTitle : 'How about now?',
 				tags : ['RS Bungsu', 'tag 1', 'tag 2']
 			};
-
-		user = testHelpers.testUser;
 
 		testHelpers.removeAllDocs(done);
 	});
@@ -28,7 +25,7 @@ describe('Updating questions', function(){
 
 			request
 				.get('/question/' + question._id.toString())
-				.auth(user.name, user.pass)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.expect('Content-Type', /html/)
 	      		.expect(200)
 				.end(done);
@@ -46,7 +43,7 @@ describe('Updating questions', function(){
 
 			request
 				.post('/question/' + question._id + '/update')
-				.auth(user.name, user.pass)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.send(updatedQuestion)
 	      		.expect(302)
 	      		.expect('location', '/question/' + question._id)
@@ -65,7 +62,7 @@ describe('Updating questions', function(){
 			request
 				.post('/question/' + question._id + '/update')
 				.send(updatedQuestion)
-				.auth(user.name, user.pass)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.expect(302)
 				.expect('location', '/question/' + question._id)
 				.expect('ErrorMessage', 'Question required')

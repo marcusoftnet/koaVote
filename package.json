@@ -5,7 +5,7 @@
   "description": "A very simple voting site",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R list",
+    "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec",
     "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
     "startLocal": "nodemon --harmony -e html,js app.js"
   },

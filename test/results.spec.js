@@ -6,7 +6,6 @@ var request = testHelpers.request;
 
 describe('Showing results', function(){
 	var resultPostData = {};
-	var user = {};
 
 	beforeEach(function (done) {
 		resultPostData = {
@@ -15,8 +14,6 @@ describe('Showing results', function(){
 			from : '',
 			to : ''
 		};
-
-		user = testHelpers.testUser;
 		testHelpers.removeAllDocs(done);
 	});
 
@@ -38,7 +35,7 @@ describe('Showing results', function(){
 
 			request
 				.get('/results')
-				.auth(user.name, user.pass)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 		  		.expect(function (req) {
 		  			req.text.should.containEql('Question Q1?');
 		  			req.text.should.containEql('Question Q2?');
@@ -59,7 +56,7 @@ describe('Showing results', function(){
 
 			request
 				.post('/results')
-				.auth(user.name, user.pass)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.send(resultPostData)
 				.expect(200)
 		  		.expect(function (res) {
@@ -83,7 +80,7 @@ describe('Showing results', function(){
 
 			request
 				.post('/results')
-				.auth(user.name, user.pass)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.send(resultPostData)
 				.expect(200)
 		  		.expect(function (res) {
@@ -107,7 +104,7 @@ describe('Showing results', function(){
 
 			request
 				.post('/results')
-				.auth(user.name, user.pass)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.send(resultPostData)
 				.expect(200)
 		  		.expect(function (res) {
@@ -137,7 +134,7 @@ describe('Showing results', function(){
 
 			request
 				.post('/results')
-				.auth(user.name, user.pass)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.send(resultPostData)
 				.expect(200)
 		  		.expect(function (res) {

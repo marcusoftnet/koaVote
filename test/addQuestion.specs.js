@@ -5,15 +5,12 @@ var request = testHelpers.request;
 
 describe('Adding questions', function(){
 	var a_test_question = {};
-	var user = {};
 	var NEW_QUESTION_URL = '/question/new';
 
 	beforeEach(function (done) {
 		a_test_question  = {
 			tagString : 'RS Bungsu, tag 1, tag 2, tag 3',
 			questionTitle : 'What about this?' };
-
-		user = testHelpers.testUser;
 
 		testHelpers.removeAllDocs(done);
 	});
@@ -25,7 +22,7 @@ describe('Adding questions', function(){
 	it('has a page to add new questions', function(done){
 		request
 			.get(NEW_QUESTION_URL)
-			.auth(user.name, user.pass)
+			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 	  		.expect(200)
 			.expect('Content-Type', /html/)
 			.end(done);
@@ -35,7 +32,7 @@ describe('Adding questions', function(){
 		request
 			.post(NEW_QUESTION_URL)
 			.send(a_test_question)
-			.auth(user.name, user.pass)
+			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 			.expect(302)
 			.expect('location', /question/) // TODO: Nice little regexp here /vote/*.*/comment
 			.end(done);
@@ -47,7 +44,7 @@ describe('Adding questions', function(){
 		request
 			.post(NEW_QUESTION_URL)
 			.send(a_test_question)
-			.auth(user.name, user.pass)
+			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 			.expect(302)
 			.expect('location', NEW_QUESTION_URL)
 			.expect('ErrorMessage', 'Question required')
