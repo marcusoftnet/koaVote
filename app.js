@@ -26,4 +26,4 @@ require('./routes/resultRoutes.js')(app);
 
 // listen
 app.listen(config.port);
-console.log('listening on port '+ config.port);
+console.log('listening on port '+ config.port + '\nConfig:' + config.user.name);
