@@ -1,7 +1,7 @@
 var mongoProdUri = process.env.MONGOHQ_URL || 'localhost:27017/koaVote_Prod';
 var adminUser = {
 	name : process.env.BASIC_USER || 'marcus',
-	password : process.env.BASIC_USER || 'koavote'
+	pass : process.env.BASIC_USER || 'koavote'
 };
 
 var config = {
