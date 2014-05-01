@@ -24,3 +24,5 @@ module.exports.addDaysToDate = function (date, daysToAdd) {
 
 var app = require('../app.js');
 module.exports.request = require('supertest').agent(app.listen());
+
+module.exports.testUser = config.user;

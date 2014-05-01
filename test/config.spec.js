@@ -16,8 +16,8 @@ describe("Configuration", function () {
 	config.user.should.not.be.emtpy;
 	should.exists(config.user.name);
 	config.user.name.should.not.be.emtpy;
-	should.exists(config.user.password);
-	config.user.password.should.not.be.emtpy;
+	should.exists(config.user.pass);
+	config.user.pass.should.not.be.emtpy;
   };
 
   describe("Local configuration", function () {
