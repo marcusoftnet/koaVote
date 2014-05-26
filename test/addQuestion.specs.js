@@ -10,7 +10,9 @@ describe('Adding questions', function(){
 	beforeEach(function (done) {
 		a_test_question  = {
 			tagString : 'RS Bungsu, tag 1, tag 2, tag 3',
-			questionTitle : 'What about this?' };
+			questionTitle : 'What about this?',
+			thankYouText : 'Thank you for you vote!',
+			commentTitle : 'Do you want to add a comment?' };
 
 		testHelpers.removeAllDocs(done);
 	});
@@ -48,6 +50,32 @@ describe('Adding questions', function(){
 			.expect(302)
 			.expect('location', NEW_QUESTION_URL)
 			.expect('ErrorMessage', 'Question required')
+			.end(done);
+	});
+
+	it('requires a thank you note', function (done) {
+		delete a_test_question.thankYouText;
+
+		request
+			.post(NEW_QUESTION_URL)
+			.send(a_test_question)
+			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
+			.expect(302)
+			.expect('location', NEW_QUESTION_URL)
+			.expect('ErrorMessage', 'Thank you note required')
+			.end(done);
+	});
+
+	it('requires a comment title', function (done) {
+		delete a_test_question.commentTitle;
+
+		request
+			.post(NEW_QUESTION_URL)
+			.send(a_test_question)
+			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
+			.expect(302)
+			.expect('location', NEW_QUESTION_URL)
+			.expect('ErrorMessage', 'A title for the comment box is required')
 			.end(done);
 	});
 });

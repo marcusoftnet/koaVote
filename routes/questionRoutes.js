@@ -33,6 +33,18 @@ module.exports = function (app) {
 			return;
 		}
 
+		if(!utils.existsAndNonEmpty(postedData.thankYouText)){
+			this.set('ErrorMessage', 'Thank you note required');
+			this.redirect(newQuestionURL);
+			return;
+		}
+
+		if(!utils.existsAndNonEmpty(postedData.commentTitle)){
+			this.set('ErrorMessage', 'A title for the comment box is required');
+			this.redirect(newQuestionURL);
+			return;
+		}
+
 		var question = createQuestionFromPostedData(postedData);
 		var q = yield questions.insert(question);
 
@@ -61,6 +73,8 @@ module.exports = function (app) {
 			hospital : postedData.hospital,
 			questionTitle : postedData.questionTitle,
 			tags : utils.splitAndTrimTagString(postedData.tagString),
+			thankYouText : postedData.thankYouText,
+			commentTitle : postedData.commentTitle,
 			created_at : new Date
 		};
 	};
