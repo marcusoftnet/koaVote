@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Results for {{}}</title>
+	<title>Results for {{ vm.question.questionTitle }}</title>
 </head>
 <body>
 	<table border="1">
@@ -10,14 +10,16 @@
 			<th>Tags</th>
 			<th>Vote date</th>
 			<th>Vote time</th>
+			<th>Comment</th>
 		</tr>
 		{% for vote in vm.resultVotes %}
 		<tr>
-			<td>{{vote.questionTitle}}</td>
+			<td>{{ vm.question.questionTitle }}</td>
 			<td>{{vote.voteValue}}</td>
 			<td>{{vote.tags.join(', ') }}</td>
 			<td>{{vote.created_at.toDateString() }}</td>
 			<td>{{vote.created_at.toTimeString() }}</td>
+			<td>{{vote.comment }}</td>
 		</tr>
 		{% endfor %}
 	</table>

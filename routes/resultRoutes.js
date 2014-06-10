@@ -28,10 +28,14 @@ module.exports = function (app) {
 		vm.resultVotes = yield getVotesForCritera(postedData);
 		vm.question = yield questions.findById(postedData.questionId);
 
-		this.set("content-type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		this.set("content-type", "application/vnd.ms-excel");
 
-		var filename = (vm.question) ? vm.question.questionTitle : "results";
-		this.set("content-disposition", "attachment;filename=" + filename + ".xlsx");
+		if(!vm.question){
+			vm.question = { questionTitle : "" };
+		}
+
+		var filename = (vm.question.questionTitle.length > 0) ? vm.question.questionTitle : "results";
+		this.set("content-disposition", "attachment;filename=" + filename + ".xls");
 
 		this.body = yield render('showResults', { vm : vm });
 	};

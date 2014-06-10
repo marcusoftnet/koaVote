@@ -49,7 +49,7 @@ describe('Showing results', function(){
 			.post('/results')
 			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 			.send(resultPostData)
-	  		.expect("content-type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+	  		.expect("content-type", "application/vnd.ms-excel")
 			.end(done);
 	});
 
@@ -58,7 +58,7 @@ describe('Showing results', function(){
 			.post('/results')
 			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 			.send(resultPostData)
-		  	.expect("content-disposition", "attachment;filename=results.xlsx")
+		  	.expect("content-disposition", "attachment;filename=results.xls")
 			.end(done);
 	});
 
@@ -75,7 +75,7 @@ describe('Showing results', function(){
 				.post('/results')
 				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.send(resultPostData)
-		  		.expect("content-disposition", "attachment;filename=Question Q1.xlsx")
+		  		.expect("content-disposition", "attachment;filename=Question Q1.xls")
 				.end(done);
 		})();
 	});

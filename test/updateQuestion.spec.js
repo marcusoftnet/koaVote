@@ -7,10 +7,11 @@ describe('Updating questions', function(){
 	var a_test_question = {};
 
 	beforeEach(function (done) {
-		a_test_question = {
-				questionTitle : 'How about now?',
-				tags : ['RS Bungsu', 'tag 1', 'tag 2']
-			};
+		a_test_question  = {
+			tagString : 'RS Bungsu, tag 1, tag 2, tag 3',
+			questionTitle : 'What about this?',
+			thankYouText : 'Thank you for you vote!',
+			commentTitle : 'Do you want to add a comment?' };
 
 		testHelpers.removeAllDocs(done);
 	});
@@ -38,7 +39,9 @@ describe('Updating questions', function(){
 
 			var updatedQuestion = {
 				questionTitle : '111 - How about now?',
-				tagString : '111 - RS Bungsu, tag 111-1, tag 111-2'
+				tagString : '111 - RS Bungsu, tag 111-1, tag 111-2',
+				thankYouText : 'Thank you for you vote!',
+				commentTitle : 'Do you want to add a comment?'
 			};
 
 			request
@@ -56,7 +59,8 @@ describe('Updating questions', function(){
 			var question = yield testHelpers.questions.insert(a_test_question);
 
 			var updatedQuestion = {
-				tagString : 'tag 111-1, tag 111-2'
+				thankYouText : 'Thank you for you vote!',
+				commentTitle : 'Do you want to add a comment?'
 			};
 
 			request
@@ -66,6 +70,46 @@ describe('Updating questions', function(){
 				.expect(302)
 				.expect('location', '/question/' + question._id)
 				.expect('ErrorMessage', 'Question required')
+				.end(done);
+		})();
+	});
+
+	it('requires a thank you note', function (done) {
+		co(function *(){
+			var question = yield testHelpers.questions.insert(a_test_question);
+
+			var updatedQuestion = {
+				questionTitle : '111 - How about now?',
+				commentTitle : 'Do you want to add a comment?'
+			};
+
+			request
+				.post('/question/' + question._id + '/update')
+				.send(updatedQuestion)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
+				.expect('ErrorMessage', 'Thank you note required')
+				.expect(302)
+				.expect('location', '/question/' + question._id)
+				.end(done);
+		})();
+	});
+
+	it('requires a comment title', function (done) {
+		co(function *(){
+			var question = yield testHelpers.questions.insert(a_test_question);
+
+			var updatedQuestion = {
+				questionTitle : 'What about this?',
+				thankYouText : 'Thank you for you vote!',
+			};
+
+			request
+				.post('/question/' + question._id + '/update')
+				.send(updatedQuestion)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
+				.expect('ErrorMessage', 'A title for the comment box is required')
+				.expect(302)
+				.expect('location', '/question/' + question._id)
 				.end(done);
 		})();
 	});
