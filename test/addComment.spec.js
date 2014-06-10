@@ -10,7 +10,7 @@ describe('Adding comments', function(){
 		a_test_vote = {
 				tags: ['RS Bungsu', 'tag 1'],
 				voteValue : 3,
-				questionId : 12345678990
+				questionId : 1234567890
 			};
 
 		testHelpers.removeAllDocs(done);
@@ -22,6 +22,14 @@ describe('Adding comments', function(){
 
 	it('has a page to add comments', function(done){
 		co(function *(){
+			var q = yield testHelpers.questions.insert({
+				tagString : 'RS Bungsu, tag 1, tag 2, tag 3',
+				questionTitle : 'What about this?',
+				thankYouText : 'Thank you for you vote!',
+				commentTitle : 'Do you want to add a comment?' });
+
+			a_test_vote.questionId = q._id;
+
 			var vote = yield testHelpers.votes.insert(a_test_vote);
 
 			request
