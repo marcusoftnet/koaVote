@@ -63,7 +63,14 @@ module.exports = function (app) {
 
 	function *showAddComment(id) {
 		var vote = yield votes.findById(id);
-		this.body = yield render('comment', { voteId : id, questionId : vote.questionId });
+		var question = yield questions.findById(vote.questionId);
+
+		this.body = yield render('comment', { 
+			voteId : id, 
+			questionId : vote.questionId,
+			thankYouText : question.thankYouText,
+			commentTitle : question.commentTitle
+		});
 	};
 
 	function *addComment(id){
