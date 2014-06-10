@@ -43,6 +43,43 @@ describe('Showing results', function(){
 				.end(done);
 		})();
 	});
+
+	it("sets content type for excel", function (done) {
+		request
+			.post('/results')
+			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
+			.send(resultPostData)
+	  		.expect("content-type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+			.end(done);
+	});
+
+	it("sets the filename to default value when no question is selected", function (done) {
+		request
+			.post('/results')
+			.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
+			.send(resultPostData)
+		  	.expect("content-disposition", "attachment;filename=results.xlsx")
+			.end(done);
+	});
+
+	it("sets the file name to the selected question title", function (done) {
+		co(function *(){
+			var q = yield testHelpers.questions.insert({
+				tags : ['RS Bungsu','tag 1', 'tag 2', 'tag 3'],
+				questionTitle : 'Question Q1'
+			});
+
+			resultPostData.questionId = q._id;
+
+			request
+				.post('/results')
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
+				.send(resultPostData)
+		  		.expect("content-disposition", "attachment;filename=Question Q1.xlsx")
+				.end(done);
+		})();
+	});
+
 	it('filters the results by questionid', function (done) {
 		co(function *(){
 			yield [
@@ -60,9 +97,9 @@ describe('Showing results', function(){
 				.send(resultPostData)
 				.expect(200)
 		  		.expect(function (res) {
-		  			res.text.should.containEql('<li>1</li>');
-		  			res.text.should.containEql('<li>2</li>');
-		  			res.text.should.containEql('<li>3</li>');
+		  			res.text.should.containEql('<td>1</td>');
+		  			res.text.should.containEql('<td>2</td>');
+		  			res.text.should.containEql('<td>3</td>');
 		  		})
 				.end(done);
 		})();
@@ -84,9 +121,9 @@ describe('Showing results', function(){
 				.send(resultPostData)
 				.expect(200)
 		  		.expect(function (res) {
-		  			res.text.should.containEql('<li>1</li>');
-		  			res.text.should.containEql('<li>2</li>');
-		  			res.text.should.containEql('<li>3</li>');
+		  			res.text.should.containEql('<td>1</td>');
+		  			res.text.should.containEql('<td>2</td>');
+		  			res.text.should.containEql('<td>3</td>');
 		  		})
 				.end(done);
 		})();
@@ -108,9 +145,9 @@ describe('Showing results', function(){
 				.send(resultPostData)
 				.expect(200)
 		  		.expect(function (res) {
-		  			res.text.should.containEql('<li>1</li>');
-		  			res.text.should.containEql('<li>2</li>');
-		  			res.text.should.containEql('<li>3</li>');
+		  			res.text.should.containEql('<td>1</td>');
+		  			res.text.should.containEql('<td>2</td>');
+		  			res.text.should.containEql('<td>3</td>');
 		  		})
 				.end(done);
 		})();
@@ -138,8 +175,8 @@ describe('Showing results', function(){
 				.send(resultPostData)
 				.expect(200)
 		  		.expect(function (res) {
-		  			res.text.should.containEql('<li>2</li>');
-		  			res.text.should.containEql('<li>3</li>');
+		  			res.text.should.containEql('<td>2</td>');
+		  			res.text.should.containEql('<td>3</td>');
 		  		})
 				.end(done);
 		})();

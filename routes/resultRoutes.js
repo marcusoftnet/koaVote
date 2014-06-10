@@ -26,8 +26,17 @@ module.exports = function (app) {
 
 		var vm = yield recreateResultVmFromPostedData(postedData);
 		vm.resultVotes = yield getVotesForCritera(postedData);
+		vm.question = yield questions.findById(postedData.questionId);
 
-		this.body = yield render('results', { vm : vm });
+		this.set("content-type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+		var filename = "results";
+		if(vm.question){
+			filename = vm.question.questionTitle;
+		}
+		this.set("content-disposition", "attachment;filename=" + filename + ".xlsx");
+
+		this.body = yield render('showResults', { vm : vm });
 	};
 
 	function *getVotesForCritera(postedCriteria){

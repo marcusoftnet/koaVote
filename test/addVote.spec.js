@@ -60,7 +60,7 @@ describe('Adding votes', function(){
 			.expect('location', /comment/)
 			.end(done);
 	});
-	
+
 	it('requires a vote value', function (done) {
 		delete a_test_vote.voteValue;
 		request

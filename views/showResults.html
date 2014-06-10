@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>Question</th>
+			<th>Vote value</th>
+			<th>Tags</th>
+			<th>Vote date</th>
+			<th>Vote time</th>
+		</tr>
+		{% for vote in vm.resultVotes %}
+		<tr>
+			<td>{{vote.questionTitle}}</td>
+			<td>{{vote.voteValue}}</td>
+			<td>{{vote.tags.join(', ') }}</td>
+			<td>{{vote.created_at.toDateString() }}</td>
+			<td>{{vote.created_at.toTimeString() }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

@@ -5,7 +5,7 @@
 {% block content %}
 	<h1>Query poll results</h1>
 	<p>Get the results by filtering on the different criterias below</p>
-	<form name='resultForm' action='/results/show' method='post' class='form-horizontal' role='form'>
+	<form target="_blank" name='resultForm' action='/results' method='post' class='form-horizontal' role='form'>
 		<div class='form-group'>
 			<label for='questionId' class='col-sm-2 control-label lead'>Question:</label>
 			<div class='col-sm-8'>
@@ -42,9 +42,4 @@
 			</div>
 		</div>
 	</form>
-	<ul>
-		{% for vote in vm.resultVotes %}
-		<li>{{ vote.voteValue }}</li>
-		{% endfor %}
-	</ul>
 {% endblock %}
