@@ -30,10 +30,7 @@ module.exports = function (app) {
 
 		this.set("content-type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 
-		var filename = "results";
-		if(vm.question){
-			filename = vm.question.questionTitle;
-		}
+		var filename = (vm.question) ? vm.question.questionTitle : "results";
 		this.set("content-disposition", "attachment;filename=" + filename + ".xlsx");
 
 		this.body = yield render('showResults', { vm : vm });
