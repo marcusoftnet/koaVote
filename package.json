@@ -23,7 +23,8 @@
     "co-monk": "^1.0.0",
     "nodemon": "^1.0.17",
     "koa-basic-auth": "~1.1.1",
-    "koa-mount": "~1.2.5"
+    "koa-mount": "~1.2.5",
+    "koa-static-cache": "~1.0.10"
   },
   "devDependencies": {
     "co": "^3.0.0",

@@ -3,6 +3,7 @@ var logger = require('koa-logger');
 var route = require('koa-route');
 var serve = require('koa-static');
 var mount = require('koa-mount');
+var staticCache = require('koa-static-cache')
 var auth = require('koa-basic-auth');
 var config = require('./config')();
 var userAuth = require('./lib/authentication.js');
@@ -12,6 +13,7 @@ var app = module.exports = koa();
 // middleware
 //app.use(logger());
 app.use(serve(__dirname + '/public'));
+app.use(staticCache(__dirname + '/public/img'), { maxAge: 30 * 24 * 60 * 60 });
 
 // Security
 app.use(userAuth.reqBasic);
