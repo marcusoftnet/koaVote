@@ -33,6 +33,7 @@ A very simple voting site using Koa
 - Create a page for showing result of a question
 - Create a link to the result page from the question-page
 - Move the result functionality under the question, route-wise
+
 ### The model clean up
 - The votes should have an array of tags, for searching - DONE
 - The question should just prefill the vote-page with tags - DONE
