@@ -1,7 +1,8 @@
 var testHelpers = require('./testHelpers.js');
 var co = require('co');
 var should = require('should');
-var request = testHelpers.request;
+var app = require('../app.js');
+var request = require('supertest').agent(app.listen());
 
 describe('The home page', function(){
 

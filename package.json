@@ -33,6 +33,6 @@
     "supertest": "*"
   },
   "engines": {
-    "node": "0.11.12"
+    "node": ">0.12.7"
   }
 }
