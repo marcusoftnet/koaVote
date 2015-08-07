@@ -1,6 +1,6 @@
 {
   "name": "koaVote",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": "https://github.com/marcusoftnet/koaVote",
   "description": "A very simple voting site",
   "main": "app.js",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "co": "^3.0.0",
     "mocha": "*",
+    "semver": "^5.0.1",
     "should": "*",
     "supertest": "*"
   },
