@@ -1,1 +1,12 @@
-.voteface { cursor: pointer; }
+.voteface {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
