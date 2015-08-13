@@ -6,6 +6,7 @@
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec",
+    "test:watch": "./node_modules/mocha/bin/mocha --harmony-generators -w -u bdd -R dot",
     "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
     "startLocal": "nodemon --harmony -e html --watch views app.js"
   },
