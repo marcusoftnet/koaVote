@@ -11,6 +11,7 @@ module.exports = function (app) {
 	app.use(route.post('/vote', addVote));
 	app.use(route.get('/vote/:id/comment', showAddComment));
 	app.use(route.post('/vote/:id/comment', addComment));
+	app.use(route.get('/vote/:id/result', viewResult));
 	app.use(route.get('/vote/export/:format', exportTo));
 
 	// handlers
@@ -97,5 +98,22 @@ module.exports = function (app) {
 		// default to json
 		this.type = 'json';
 		this.body = voteList;
+	};
+
+	function *viewResult(id){
+		var v = yield votes.findById(id);
+		var qs = yield questions.find({});
+		var q = yield questions.findById(v.questionId);
+		var vs = yield votes.find({ questionId : v.questionId});
+
+		var vm = {
+			votes : vs,
+			question : q
+		};
+
+		console.log(qs);
+
+
+		this.body = yield render('voteResults', vm);
 	};
 };

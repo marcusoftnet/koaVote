@@ -22,7 +22,7 @@ module.exports = function (app) {
 		this.body = yield render('question', { question : question });
 	};
 
-	 function *addQuestion() {
+ 	function *addQuestion() {
 		var postedData = yield parse(this);
 		var newQuestionURL = '/question/new';
 
