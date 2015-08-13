@@ -102,7 +102,6 @@ module.exports = function (app) {
 
 	function *viewResult(id){
 		var v = yield votes.findById(id);
-		var qs = yield questions.find({});
 		var q = yield questions.findById(v.questionId);
 		var vs = yield votes.find({ questionId : v.questionId});
 
@@ -110,9 +109,6 @@ module.exports = function (app) {
 			votes : vs,
 			question : q
 		};
-
-		console.log(qs);
-
 
 		this.body = yield render('voteResults', vm);
 	};
