@@ -95,16 +95,10 @@ module.exports = function (app) {
 	};
 
 	function average(arr) {
-		console.log(arr);
-
 		var res = _.reduce(arr, function(memo, num) {
 			return memo + num;
 		}, 0);
-		console.log(res);
-		console.log(arr.length);
-
-		var d = res / arr.length;
-		return d;
+		return res / arr.length;
 	};
 
 	function *viewResult(id){
