@@ -2,7 +2,9 @@ var parse = require('co-body');
 var route = require('koa-route');
 var render = require('../lib/render');
 var utils = require('./utils.js');
+var _ = require('underscore');
 var questions = utils.questions;
+var votes = utils.votes;
 
 module.exports = function (app) {
 	// routes
@@ -10,6 +12,7 @@ module.exports = function (app) {
 	app.use(route.post('/question/new', addQuestion));
 	app.use(route.get('/question/:id', showQuestion));
 	app.use(route.post('/question/:id/update', updateQuestion));
+	app.use(route.get('/question/:id/result', viewResult));
 
 	// handlers
 	function *showAddQuestion() {
@@ -89,5 +92,39 @@ module.exports = function (app) {
 			commentTitle : postedData.commentTitle,
 			created_at : new Date
 		};
+	};
+
+	function average(arr) {
+		return _.reduce(arr, function(memo, num)
+		{
+			return memo + num;
+		}, 0) / arr.length;
+	};
+
+	function *viewResult(id){
+		var q = yield questions.findById(id);
+		var vs = yield votes.find({questionId : q._id });
+
+		var voteResults = _.chain(vs)
+		    .groupBy("created_at")
+		    .map(function(value, key) {
+		        return {
+		            day: key,
+		            avg: average(_.pluck(value, "voteValue"))
+		        }
+		    })
+		    .value();
+
+		var ds = _.pluck(voteResults, "day");
+		var avgs = _.pluck(voteResults, "avg");
+
+		var vm = {
+			days : JSON.stringify(ds),
+			voteAvgs : JSON.stringify(avgs),
+			question : q
+		};
+
+
+		this.body = yield render('voteResults', vm);
 	};
 };

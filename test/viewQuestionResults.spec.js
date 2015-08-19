@@ -34,14 +34,30 @@ describe('Viewing results for question', function(){
 		testHelpers.removeAllDocs(done);
 	});
 
-	it('shows results for all votes for the question for the vote... yeah, I know...', function (done) {
+	it('shows results for all votes for the question', function (done) {
 		co(function *(){
-			var url = '/vote/' + test_vote._id + '/result';
+			var url = '/question/' + test_question._id + '/result';
 
 			request
 				.get(url)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
 				.expect('Content-Type', /html/)
 				.expect(/Question Q1?/)
+	      		.expect(200)
+				.end(done);
+		})();
+	});
+
+	it('averages the result of the current votes', function (done) {
+		co(function *(){
+			var url = '/question/' + test_question._id + '/result';
+
+			request
+				.get(url)
+				.auth(testHelpers.testUser.name, testHelpers.testUser.pass)
+				.expect('Content-Type', /html/)
+				.expect(/1.5/)
+				.expect(/3.5/)
 	      		.expect(200)
 				.end(done);
 		})();

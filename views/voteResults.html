@@ -1,7 +1,38 @@
 {% extends 'layout.html' %}
 
-{% block title %}Question details{% endblock %}
+{% block title %}{{ question.questionTitle }} result{% endblock %}
 
 {% block content %}
-<h1>Results for '{{question.questionTitle}}' </h1>
+<h1>Vote results for '{{ question.questionTitle }}' </h1>
+
+	<div class='row marketing'>
+		<div class='col-lg-offset-2 col-lg-6'>
+			<canvas id="votesChart" width="200" height="200"></canvas>
+		</div>
+	</div>
+	<script language="javascript">
+		Chart.defaults.global.responsive = true;
+
+		var data = {
+		    labels: {{ days | safe }} ,
+		    datasets: [
+		        {
+		            label: "{{ question.questionTitle }}",
+		            fillColor: "rgba(220,220,220,0.2)",
+		            strokeColor: "rgba(220,220,220,1)",
+		            pointColor: "rgba(220,220,220,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            data: {{ voteAvgs }}
+		        }
+		    ]
+		};
+
+
+		var ctx = document.getElementById("votesChart").getContext("2d");
+
+		var myLineChart = new Chart(ctx).Line(data, {  });
+	</script>
+
 {% endblock %}

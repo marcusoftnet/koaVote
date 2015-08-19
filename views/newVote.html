@@ -8,18 +8,18 @@
 		<input type='hidden' id='tagString' name='tagString' value='{{ question.tagString }}'>
 		<input type='hidden' id='questionId' name='questionId' value='{{ question.id }}'>
 		<div class='form-group row'>
-			<input type='hidden' id='voteValue' name='voteValue' value='Bungsu'>
+			<input type='hidden' id='voteValue' name='voteValue'>
 			<div class='col-md-3 col-xs-6'>
-				<img src='/img/1.svg' data-value="1" class="voteface img-responsive">
+				<img src='/img/1.svg' data-vote="1" class="voteface img-responsive">
 			</div>
 			<div class='col-md-3 col-xs-6'>
-				<img src='/img/2.svg' data-value="2" class="voteface img-responsive">
+				<img src='/img/2.svg' data-vote="2" class="voteface img-responsive">
 			</div>
 			<div class='col-md-3 col-xs-6'>
-				<img src='/img/3.svg' data-value="3" class="voteface img-responsive">
+				<img src='/img/3.svg' data-vote="3" class="voteface img-responsive">
 			</div>
 			<div class='col-md-3 col-xs-6'>
-				<img src='/img/4.svg' data-value="4" class="voteface img-responsive">
+				<img src='/img/4.svg' data-vote="4" class="voteface img-responsive">
 			</div>
 		</div>
 		<div class='form-group row'>
@@ -36,9 +36,10 @@
 		$("#votingspinner").show();
 		$(".voteface").hide();
 
-		var vote = $(e.target).data("value");
-		$("#voteValue").value = vote;
-		
+		var vote = $(e.target).data().vote;
+		// console.log("Voting with: " + vote);
+		$("#voteValue").val(vote);;
+	
 		voteForm.submit();
 	});
 	</script>
