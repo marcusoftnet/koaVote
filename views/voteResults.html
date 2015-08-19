@@ -1,10 +1,15 @@
 {% extends 'layout.html' %}
 
-{% block title %}{{ question.questionTitle }} result{% endblock %}
+{% block title %}Result: '{{ question.questionTitle }}'{% endblock %}
 
 {% block content %}
-<h1>Vote results for '{{ question.questionTitle }}' </h1>
+<h1>Result:'{{ question.questionTitle }}' </h1>
 
+	<div class="row marketing">
+		<div class='col-offset-sm-10 col-sm-2'>
+			<a href='/question/{{ question._id.toString() }}' class='btn btn-primary btn' role='button'>Question details</a>
+		</div>
+	</div>
 	<div class='row marketing'>
 		<div class='col-lg-offset-2 col-lg-6'>
 			<canvas id="votesChart" width="200" height="200"></canvas>
