@@ -14,17 +14,19 @@ describe('Viewing results for question', function(){
 				questionTitle : 'Question Q1?'
 			});
 
+			var qid = test_question._id.toString();
+
 			var today = new Date();
 			var yesterday = new Date(today);
 			yesterday.setDate(today.getDate()-1);
 
-			test_vote = { voteValue : 1, created_at : today, questionId : test_question._id};
+			test_vote = { voteValue : 1, created_at : today, questionId : qid };
 
 			yield [
 				testHelpers.votes.insert(test_vote),
-				testHelpers.votes.insert({ voteValue : 2, created_at : today, questionId : test_question._id}),
-				testHelpers.votes.insert({ voteValue : 3, created_at : yesterday, questionId : test_question._id}),
-				testHelpers.votes.insert({ voteValue : 4, created_at : yesterday, questionId : test_question._id})
+				testHelpers.votes.insert({ voteValue : 2, created_at : today, 		questionId : qid }),
+				testHelpers.votes.insert({ voteValue : 3, created_at : yesterday, 	questionId : qid }),
+				testHelpers.votes.insert({ voteValue : 4, created_at : yesterday, 	questionId : qid })
 			];
 
 		})(done);

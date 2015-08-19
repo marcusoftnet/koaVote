@@ -95,15 +95,14 @@ module.exports = function (app) {
 	};
 
 	function average(arr) {
-		return _.reduce(arr, function(memo, num)
-		{
+		return _.reduce(arr, function(memo, num) {
 			return memo + num;
 		}, 0) / arr.length;
 	};
 
 	function *viewResult(id){
 		var q = yield questions.findById(id);
-		var vs = yield votes.find({questionId : q._id });
+		var vs = yield votes.find({ questionId : id });
 
 		var voteResults = _.chain(vs)
 		    .groupBy("created_at")
@@ -123,7 +122,6 @@ module.exports = function (app) {
 			voteAvgs : JSON.stringify(avgs),
 			question : q
 		};
-
 
 		this.body = yield render('voteResults', vm);
 	};
