@@ -16,8 +16,6 @@
 		</div>
 	</div>
 	<script language="javascript">
-		Chart.defaults.global.responsive = true;
-
 		var data = {
 		    labels: {{ days | safe }} ,
 		    datasets: [
@@ -37,7 +35,14 @@
 
 		var ctx = document.getElementById("votesChart").getContext("2d");
 
-		var myLineChart = new Chart(ctx).Line(data, {  });
+		var myLineChart = new Chart(ctx).Line(data, {  
+			responsive : true,
+			datasetFill : true,
+			scaleOverride: true, 
+			scaleStartValue: 0, 
+			scaleStepWidth: 1, 
+			scaleSteps: 4
+		});
 	</script>
 
 {% endblock %}

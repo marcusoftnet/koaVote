@@ -52,6 +52,7 @@ module.exports = function (app) {
 		}
 
 		// Create it
+		vote.voteValue = parseInt(vote.voteValue);
 		vote.tags = utils.splitAndTrimTagString(vote.tagString);
 		delete vote.tagString;
 		vote.created_at = new Date;

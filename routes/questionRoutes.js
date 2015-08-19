@@ -95,9 +95,16 @@ module.exports = function (app) {
 	};
 
 	function average(arr) {
-		return _.reduce(arr, function(memo, num) {
+		console.log(arr);
+
+		var res = _.reduce(arr, function(memo, num) {
 			return memo + num;
-		}, 0) / arr.length;
+		}, 0);
+		console.log(res);
+		console.log(arr.length);
+
+		var d = res / arr.length;
+		return d;
 	};
 
 	function *viewResult(id){
