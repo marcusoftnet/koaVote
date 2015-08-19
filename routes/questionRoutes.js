@@ -105,7 +105,9 @@ module.exports = function (app) {
 		var vs = yield votes.find({ questionId : id });
 
 		var voteResults = _.chain(vs)
-		    .groupBy("created_at")
+		    .groupBy(function (vote) {
+		    	return vote.created_at.yyyymmdd();
+		    })
 		    .map(function(value, key) {
 		        return {
 		            day: key,
