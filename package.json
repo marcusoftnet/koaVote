@@ -5,14 +5,16 @@
   "description": "A very simple voting site",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec",
-    "test:watch": "./node_modules/mocha/bin/mocha --harmony-generators -w -u bdd -R dot",
-    "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
-    "startLocal": "nodemon --harmony -e html --watch views app.js",
+    "test": "mocha --harmony-generators -u bdd -R spec",
+    "test:watch": "mocha --harmony-generators -w -u bdd -R dot",
+    "test:deploy": "npm t -- -R dot",
+    "start": "nodemon --harmony app.js prod",
+    "start:local": "nodemon --harmony -e html --watch views app.js",
+    "push": "npm run push:github && npm run push:heroku",
     "push:github": "git push --tags origin HEAD:master",
     "push:heroku": "git push heroku master",
-    "push": "npm run push:github && npm run push:heroku",
-    "deploy:prod": "npm t && npm version minor && npm run push"
+    "deploy:prod": "npm run test:deploy && npm version minor && npm run push && npm run open:prod",
+    "open:prod" : "open http://koavote.herokuapp.com"
   },
   "author": "@marcusoftnet - Marcus Hammarberg",
   "license": "MIT",
