@@ -1,6 +1,6 @@
 {
   "name": "koaVote",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "repository": "https://github.com/marcusoftnet/koaVote",
   "description": "A very simple voting site",
   "main": "app.js",
@@ -14,7 +14,7 @@
     "push:github": "git push --tags origin HEAD:master",
     "push:heroku": "git push heroku master",
     "deploy:prod": "npm run test:deploy && npm version minor && npm run push && npm run open:prod",
-    "open:prod" : "open http://koavote.herokuapp.com"
+    "open:prod": "open http://koavote.herokuapp.com"
   },
   "author": "@marcusoftnet - Marcus Hammarberg",
   "license": "MIT",
