@@ -9,6 +9,7 @@
     "test:watch": "./node_modules/mocha/bin/mocha --harmony-generators -w -u bdd -R dot",
     "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
     "startLocal": "nodemon --harmony -e html --watch views app.js",
+    "push:github": "git push --tags origin HEAD:master",
     "deploy:prod": "npm t && npm version minor"
   },
   "author": "@marcusoftnet - Marcus Hammarberg",
