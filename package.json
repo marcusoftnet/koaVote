@@ -1,6 +1,6 @@
 {
   "name": "koaVote",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "repository": "https://github.com/marcusoftnet/koaVote",
   "description": "A very simple voting site",
   "main": "app.js",
