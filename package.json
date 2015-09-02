@@ -10,7 +10,8 @@
     "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
     "startLocal": "nodemon --harmony -e html --watch views app.js",
     "push:github": "git push --tags origin HEAD:master",
-    "deploy:prod": "npm t && npm version minor && npm run push:github"
+    "push:heroku": "git push heroku master",
+    "deploy:prod": "npm t && npm version minor && npm run push:github && npm run push:heroku"
   },
   "author": "@marcusoftnet - Marcus Hammarberg",
   "license": "MIT",
