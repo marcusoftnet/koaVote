@@ -11,7 +11,8 @@
     "startLocal": "nodemon --harmony -e html --watch views app.js",
     "push:github": "git push --tags origin HEAD:master",
     "push:heroku": "git push heroku master",
-    "deploy:prod": "npm t && npm version minor && npm run push:github && npm run push:heroku"
+    "push": "npm run push:github && npm run push:heroku",
+    "deploy:prod": "npm t && npm version minor && npm run push"
   },
   "author": "@marcusoftnet - Marcus Hammarberg",
   "license": "MIT",
