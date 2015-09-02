@@ -1,6 +1,6 @@
 {
   "name": "koaVote",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "repository": "https://github.com/marcusoftnet/koaVote",
   "description": "A very simple voting site",
   "main": "app.js",
@@ -9,7 +9,7 @@
     "test:watch": "./node_modules/mocha/bin/mocha --harmony-generators -w -u bdd -R dot",
     "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
     "startLocal": "nodemon --harmony -e html --watch views app.js",
-    "deploy:prod" : "npm t && npm version minor"
+    "deploy:prod": "npm t && npm version minor"
   },
   "author": "@marcusoftnet - Marcus Hammarberg",
   "license": "MIT",
